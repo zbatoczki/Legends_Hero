@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://gryu33hl1mx4" path="res://scripts/movement_component.gd" id="3_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://dwlunda0x4ynr" path="res://assets/player/attack_sprites/attack_up.png" id="4_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://cre01lrk0v46" path="res://assets/player/block_sprites/shield_block_down.png" id="5_8qjgm"]
+[ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="6_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://ct80bwopsbqnf" path="res://assets/player/block_sprites/shield_block_left.png" id="6_ejd4k"]
 [ext_resource type="Texture2D" uid="uid://c3yd6usyyiit7" path="res://assets/player/block_sprites/shield_block_right.png" id="7_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://cm05qc4o1j280" path="res://assets/player/block_sprites/shield_block_up.png" id="8_pi3ps"]
@@ -297,6 +298,10 @@ body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 speed = 75.0
 metadata/_custom_type_script = "uid://gryu33hl1mx4"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=895892289]
+script = ExtResource("6_2xrq6")
+metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1283073682]
 sprite_frames = SubResource("SpriteFrames_cii4s")
