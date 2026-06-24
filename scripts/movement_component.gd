@@ -1,5 +1,7 @@
 class_name MovementComponent extends Node
 
+@onready var knockback_component: KnockbackComponent = %KnockbackComponent
+
 @export var body: CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var speed: float = 50.0
@@ -9,10 +11,11 @@ var last_direction : Vector2 = Vector2.DOWN
 var is_blocking: bool = false
 var is_attacking: bool = false
 
+
 func _ready() -> void:
 	sprite.animation = "walk_down"
 
-func tick(_delta: float) -> void:
+func tick(delta: float) -> void:
 	if body == null: return
 
 	# Remember which way we're facing whenever we actually move, so we can
@@ -32,6 +35,12 @@ func tick(_delta: float) -> void:
 	else:
 		body.velocity = direction * speed
 		set_walking_sprite()
+		
+	if not knockback_component.is_knockback_over():
+		knockback_component.decrement_timer(delta)
+		body.velocity = knockback_component.knockback
+	else:
+		knockback_component.knockback = Vector2.ZERO
 
 	body.move_and_slide()
 

@@ -5,9 +5,18 @@
 
 [node name="Main" type="Node" unique_id=377360141]
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1864012356]
+
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1864012356]
-
 [node name="Slime" parent="." unique_id=516751510 instance=ExtResource("2_iuonh")]
-position = Vector2(96, -48)
+position = Vector2(112, 0)
+
+[node name="Slime2" parent="." unique_id=932422762 instance=ExtResource("2_iuonh")]
+position = Vector2(-48, 48)
+
+[node name="Slime3" parent="." unique_id=693962524 instance=ExtResource("2_iuonh")]
+position = Vector2(16, -64)
+
+[node name="Slime4" parent="." unique_id=592754712 instance=ExtResource("2_iuonh")]
+position = Vector2(-112, -64)

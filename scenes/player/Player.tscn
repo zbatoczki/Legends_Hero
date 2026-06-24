@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="6_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://ct80bwopsbqnf" path="res://assets/player/block_sprites/shield_block_left.png" id="6_ejd4k"]
 [ext_resource type="Texture2D" uid="uid://c3yd6usyyiit7" path="res://assets/player/block_sprites/shield_block_right.png" id="7_2xrq6"]
+[ext_resource type="Script" uid="uid://o7njoolsg54g" path="res://scripts/knockback_component.gd" id="7_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://cm05qc4o1j280" path="res://assets/player/block_sprites/shield_block_up.png" id="8_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://dtv8wjjmmobhy" path="res://assets/player/movement_sprites/shield_walk_right.png" id="9_kswpp"]
 [ext_resource type="Texture2D" uid="uid://dsis7qay4cc6h" path="res://assets/player/movement_sprites/shield_walk_up.png" id="10_v5i4m"]
@@ -285,8 +286,12 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cii4s"]
 size = Vector2(38, 15)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_as2t8"]
+radius = 6.0
+height = 17.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1757246669]
-collision_mask = 30
+collision_mask = 28
 script = ExtResource("1_ov1oi")
 sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps"), ExtResource("3_kswpp")])
 
@@ -305,7 +310,13 @@ metadata/_custom_type_script = "uid://gryu33hl1mx4"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=895892289]
 script = ExtResource("6_2xrq6")
+max_health = 1
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=498010284]
+unique_name_in_owner = true
+script = ExtResource("7_pi3ps")
+metadata/_custom_type_script = "uid://o7njoolsg54g"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1283073682]
 sprite_frames = SubResource("SpriteFrames_cii4s")
@@ -327,4 +338,15 @@ monitorable = false
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_cii4s")
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=1773261846]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=490436942]
+shape = SubResource("CapsuleShape2D_as2t8")
+debug_color = Color(0.8235294, 0.37254903, 0.38039216, 0.21176471)
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -156,7 +156,7 @@ autoplay = "idle"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_cii4s")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1519084998]
+[node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1519084998]
 stream = ExtResource("6_58cyt")
 
 [node name="RandomMovementTimer" type="Timer" parent="." unique_id=2115698111]

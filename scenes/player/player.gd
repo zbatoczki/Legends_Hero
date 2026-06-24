@@ -4,6 +4,8 @@ class_name Player extends CharacterBody2D
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var sword_swing_player: AudioStreamPlayer = $SwordSwing
 @onready var sword_hitbox: Area2D = $DamageComponent
+@onready var knockback_component: KnockbackComponent = $KnockbackComponent
+@onready var health_component: HealthComponent = $HealthComponent
 
 @export var sword_swing_tracks: Array[AudioStreamOggVorbis] = []
 
@@ -35,4 +37,17 @@ func _on_damage_component_body_entered(body: Node2D) -> void:
 	
 	var knockback_direction = (body.global_position - global_position).normalized()
 	body.knockback_component.apply_knockback(knockback_direction, 300.0, 0.12)
-	body.health_component.damage(1)
+	body.take_damage(1)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	var knockback_direction = (global_position - body.global_position).normalized()
+	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
+	SoundEffectsPlayer.play_damaged_sound()
+	health_component.damage(1)
+	
+
+
+func _on_health_component_died() -> void:
+	SoundEffectsPlayer.play_game_over_sound()
+	queue_free()
