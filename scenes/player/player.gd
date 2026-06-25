@@ -41,6 +41,7 @@ func _on_damage_component_body_entered(body: Node2D) -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	if input_component.is_blocking: return
 	var knockback_direction = (global_position - body.global_position).normalized()
 	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
 	SoundEffectsPlayer.play_damaged_sound()
