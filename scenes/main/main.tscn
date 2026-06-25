@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://be7k5ypbb0km0"]
 
 [ext_resource type="PackedScene" uid="uid://d1w5ccem33kle" path="res://scenes/player/Player.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://c687026o6q8ox" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://cdimvr2cop440" path="res://scenes/enemies/slime/slime.tscn" id="2_iuonh"]
 
 [node name="Main" type="Node" unique_id=377360141]
+script = ExtResource("1_k2fmo")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1864012356]
 
@@ -20,3 +22,14 @@ position = Vector2(16, -64)
 
 [node name="Slime4" parent="." unique_id=592754712 instance=ExtResource("2_iuonh")]
 position = Vector2(-112, -64)
+
+[node name="Button" type="Button" parent="." unique_id=207375462]
+offset_left = -144.0
+offset_top = -80.0
+offset_right = -107.0
+offset_bottom = -64.0
+theme_override_font_sizes/font_size = 5
+text = "Reset Scene"
+alignment = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

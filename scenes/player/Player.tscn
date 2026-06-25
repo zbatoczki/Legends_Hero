@@ -310,7 +310,7 @@ metadata/_custom_type_script = "uid://gryu33hl1mx4"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=895892289]
 script = ExtResource("6_2xrq6")
-max_health = 1
+max_health = 3
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=498010284]
@@ -320,8 +320,8 @@ metadata/_custom_type_script = "uid://o7njoolsg54g"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1283073682]
 sprite_frames = SubResource("SpriteFrames_cii4s")
-animation = &"attack_right"
-frame = 1
+animation = &"attack_down"
+frame_progress = 0.53091556
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901547094]
 shape = SubResource("CapsuleShape2D_cii4s")

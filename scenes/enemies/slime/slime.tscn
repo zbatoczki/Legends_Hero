@@ -161,7 +161,6 @@ stream = ExtResource("6_58cyt")
 
 [node name="RandomMovementTimer" type="Timer" parent="." unique_id=2115698111]
 wait_time = 3.0
-autostart = true
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]
