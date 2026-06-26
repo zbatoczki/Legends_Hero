@@ -27,6 +27,11 @@ enum MovementMode { WANDER, TELEPORT, FOLLOW }
 @export var min_wander_interval: float = 1.0
 @export var max_wander_interval: float = 3.0
 
+## Optional. Keeps every target inside the painted area of this layer. 
+## If empty, the first node in the "MovementBounds" group is used.
+@export var bounds_layer: TileMapLayer
+@export var bounds_margin: float = 8.0
+
 var _retarget_timer: float = 0.0
 var target_position: Vector2
 var _player: Node2D
@@ -76,7 +81,7 @@ func _advance_wander(delta: float) -> void:
 func _track_player() -> void:
 	var player := _get_player()
 	if player != null:
-		target_position = player.global_position
+		target_position = _clamp_to_bounds(player.global_position)
 
 
 # Pick a new random point within wander_radius and either head for it or, in
@@ -100,13 +105,37 @@ func velocity_to_target() -> Vector2:
 
 # Pick a new random point within wander_radius of where we are now.
 func pick_random_position() -> void:
-	target_position = body.global_position + Vector2(
+	target_position = _clamp_to_bounds(body.global_position + Vector2(
 		randf_range(-wander_radius, wander_radius),
 		randf_range(-wander_radius, wander_radius),
-	)
+	))
 
 
 func _get_player() -> Node2D:
 	if _player == null:
 		_player = get_tree().get_first_node_in_group("Player") as Node2D
 	return _player
+
+
+func _get_bounds_layer() -> TileMapLayer:
+	if bounds_layer == null:
+		bounds_layer = get_tree().get_first_node_in_group("MovementBounds") as TileMapLayer
+	return bounds_layer
+
+
+# Clamp a world position to the painted cells of the bounds layer (minus the
+# margin). Returns pos unchanged if no bounds layer is configured.
+func _clamp_to_bounds(pos: Vector2) -> Vector2:
+	var layer := _get_bounds_layer()
+	if layer == null:
+		return pos
+	var rect := layer.get_used_rect()
+	if rect.size == Vector2i.ZERO:
+		return pos
+	var cell := Vector2(layer.tile_set.tile_size)
+	var min_world := layer.to_global(layer.map_to_local(rect.position) - cell / 2.0)
+	var max_world := layer.to_global(layer.map_to_local(rect.end - Vector2i.ONE) + cell / 2.0)
+	return Vector2(
+		clampf(pos.x, min_world.x + bounds_margin, max_world.x - bounds_margin),
+		clampf(pos.y, min_world.y + bounds_margin, max_world.y - bounds_margin),
+	)
