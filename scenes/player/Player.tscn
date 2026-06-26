@@ -348,4 +348,5 @@ debug_color = Color(0.8235294, 0.37254903, 0.38039216, 0.21176471)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

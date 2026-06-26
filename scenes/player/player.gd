@@ -42,14 +42,21 @@ func _on_damage_component_body_entered(body: Node2D) -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if input_component.is_blocking: return
-	var knockback_direction = (global_position - body.global_position).normalized()
-	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
-	SoundEffectsPlayer.play_damaged_sound()
-	health_component.damage(1)
+	handle_damage(body)
 	
 
 
 func _on_health_component_died() -> void:
 	SoundEffectsPlayer.play_game_over_sound()
 	queue_free()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	handle_damage(area)
+	
+func handle_damage(body: Node2D) -> void:
+	if input_component.is_blocking: return
+	var knockback_direction = (global_position - body.global_position).normalized()
+	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
+	SoundEffectsPlayer.play_damaged_sound()
+	health_component.damage(1)

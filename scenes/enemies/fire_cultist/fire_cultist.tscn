@@ -214,6 +214,7 @@ script = ExtResource("1_ltlrt")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1239411559]
 script = ExtResource("3_euxpr")
+max_health = 3
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=412977982]
@@ -237,6 +238,12 @@ autostart = true
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=480303468]
 stream = ExtResource("13_78daa")
+
+[node name="FireballSpawnAnchor" type="Node2D" parent="." unique_id=1384846197]
+
+[node name="FireballSpawnPosition" type="Marker2D" parent="FireballSpawnAnchor" unique_id=1023948057]
+unique_name_in_owner = true
+position = Vector2(0, 12)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

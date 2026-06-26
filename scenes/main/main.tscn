@@ -18,23 +18,21 @@ tile_set = ExtResource("2_l3cfh")
 
 [node name="FireCultist" parent="." unique_id=1052478599 instance=ExtResource("5_ow5a4")]
 
+[node name="FireCultist2" parent="." unique_id=1301108340 instance=ExtResource("5_ow5a4")]
+
+[node name="FireCultist3" parent="." unique_id=2047182611 instance=ExtResource("5_ow5a4")]
+
 [node name="Slime" parent="." unique_id=516751510 instance=ExtResource("2_iuonh")]
 
-[node name="Slime2" parent="." unique_id=690218245 instance=ExtResource("2_iuonh")]
+[node name="Slime2" parent="." unique_id=970408563 instance=ExtResource("2_iuonh")]
 
-[node name="Slime3" parent="." unique_id=405947109 instance=ExtResource("2_iuonh")]
+[node name="Slime3" parent="." unique_id=1797274684 instance=ExtResource("2_iuonh")]
 
-[node name="Slime4" parent="." unique_id=158717003 instance=ExtResource("2_iuonh")]
+[node name="Slime4" parent="." unique_id=2013977879 instance=ExtResource("2_iuonh")]
 
-[node name="Slime5" parent="." unique_id=1191942967 instance=ExtResource("2_iuonh")]
+[node name="Slime5" parent="." unique_id=1130780464 instance=ExtResource("2_iuonh")]
 
-[node name="Slime6" parent="." unique_id=164638491 instance=ExtResource("2_iuonh")]
-
-[node name="Slime7" parent="." unique_id=1374545606 instance=ExtResource("2_iuonh")]
-
-[node name="Slime8" parent="." unique_id=1088260220 instance=ExtResource("2_iuonh")]
-
-[node name="Slime9" parent="." unique_id=865749318 instance=ExtResource("2_iuonh")]
+[node name="Slime6" parent="." unique_id=788135930 instance=ExtResource("2_iuonh")]
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
 position = Vector2(0, 64)

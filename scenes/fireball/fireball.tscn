@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c42ge5awb3rpv"]
+
+[ext_resource type="Texture2D" uid="uid://bmf4ha55v1sqi" path="res://assets/effects/fire_ball.png" id="1_ebbgg"]
+[ext_resource type="Script" uid="uid://cynlg01m653q6" path="res://scenes/fireball/fireball.gd" id="1_grvey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grvey"]
+atlas = ExtResource("1_ebbgg")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2h4j"]
+atlas = ExtResource("1_ebbgg")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym75t"]
+atlas = ExtResource("1_ebbgg")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdhvv"]
+atlas = ExtResource("1_ebbgg")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cii4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grvey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2h4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym75t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdhvv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_as2t8"]
+radius = 4.0
+
+[node name="Fireball" type="Area2D" unique_id=1728077247 groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_grvey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1897113714]
+sprite_frames = SubResource("SpriteFrames_cii4s")
+autoplay = "default"
+frame_progress = 0.38224438
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=181694593]
+shape = SubResource("CircleShape2D_as2t8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1273986278]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

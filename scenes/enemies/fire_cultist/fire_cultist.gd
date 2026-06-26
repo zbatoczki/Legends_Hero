@@ -3,14 +3,17 @@ class_name  FireCultist extends CharacterBody2D
 @onready var fireball_cast_animation: AnimatedSprite2D = $FireballCastAnimation
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var body_animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var fireball_spawn_position: Marker2D = %FireballSpawnPosition
+@onready var fireball_spawn_anchor: Node2D = $FireballSpawnAnchor
 
 var death_component: PackedScene = preload("res://scenes/components/enemy_death_component.tscn")
+const FIREBALL: PackedScene = preload("uid://c42ge5awb3rpv")
+
 var player: Player
 
 func _ready() -> void:
 	fireball_cast_animation.visible = false;
 	teleport()
-
 
 func take_damage(amount: int) -> void:
 	SoundEffectsPlayer.play_damaged_sound()
@@ -34,23 +37,33 @@ func _on_movement_timer_timeout() -> void:
 
 func cast_firebal() -> void:
 	body_animation.play()
-	face_player() 
+	face_player()
+	await play_cast_animation()
+	spawn_fireball()
+	
+func face_player() -> void:
+	if player == null:
+		player = get_tree().get_first_node_in_group("Player") as Player
+	if player == null: return
+	var direction = _cardinal(player.global_position - global_position)
+	var angle_to = Vector2.DOWN.angle_to(direction)
+	fireball_cast_animation.rotation = angle_to
+	fireball_spawn_anchor.rotation = angle_to
+	body_animation.play("cast_%s" % [_suffix(direction)])
+	
+func play_cast_animation() -> void:
 	fireball_cast_animation.visible = true
 	fireball_cast_animation.play("default")
 	await fireball_cast_animation.animation_finished
 	fireball_cast_animation.visible = false
 	body_animation.stop()
-	#spawn fireball
-	
-func face_player() -> void:
-	var player = get_tree().get_first_node_in_group("Player") as Player
-	if player == null: return
-	var direction = _cardinal(player.global_position - global_position)
-	fireball_cast_animation.rotation = Vector2.DOWN.angle_to(direction)
-	body_animation.play("cast_%s" % [_suffix(direction)])
 	
 func spawn_fireball() -> void:
-	pass
+	if player == null: return
+	var fireball_instance = FIREBALL.instantiate()
+	fireball_instance.global_position = fireball_spawn_position.global_position
+	fireball_instance.direction = (player.global_position - fireball_instance.global_position).normalized()
+	get_parent().add_child(fireball_instance)
 	
 	# Collapse a (possibly diagonal) movement vector down to a single cardinal
 # direction, picking the dominant axis.
