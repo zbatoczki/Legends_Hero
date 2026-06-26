@@ -12,7 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cnirqg7mgrx5k" path="res://assets/enemies/fire_cultist/fire_cultist_right.png" id="10_cjqgs"]
 [ext_resource type="Texture2D" uid="uid://7e4qa5c8nv56" path="res://assets/enemies/fire_cultist/fire_cultist_up.png" id="11_p1xsx"]
 [ext_resource type="Texture2D" uid="uid://dlapgtjfwqgcp" path="res://assets/effects/fire_ball_spawn.png" id="12_euxpr"]
-[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/sfx/damage.ogg" id="13_78daa"]
+[ext_resource type="PackedScene" uid="uid://4v88baxrxfu8" path="res://scenes/projectile/base/projectile_controller_componenet.tscn" id="13_7vy34"]
+[ext_resource type="PackedScene" uid="uid://ddkfvr6n062yp" path="res://scenes/projectile/fireball/fireball.tscn" id="14_att11"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwfsj"]
 atlas = ExtResource("4_78daa")
@@ -244,14 +245,13 @@ offset = Vector2(0, 12)
 wait_time = 3.0
 autostart = true
 
-[node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=480303468]
-stream = ExtResource("13_78daa")
+[node name="ProjectileControllerComponenet" parent="." unique_id=372966315 instance=ExtResource("13_7vy34")]
+projectile = ExtResource("14_att11")
 
-[node name="FireballSpawnAnchor" type="Node2D" parent="." unique_id=1384846197]
-
-[node name="FireballSpawnPosition" type="Marker2D" parent="FireballSpawnAnchor" unique_id=1023948057]
-unique_name_in_owner = true
+[node name="SpawnPoint" parent="ProjectileControllerComponenet" index="0" unique_id=1674892035]
 position = Vector2(0, 12)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+
+[editable path="ProjectileControllerComponenet"]

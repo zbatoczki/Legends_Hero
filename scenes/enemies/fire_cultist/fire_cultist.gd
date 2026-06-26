@@ -2,11 +2,9 @@ class_name FireCultist extends Enemy
 
 @onready var fireball_cast_animation: AnimatedSprite2D = $FireballCastAnimation
 @onready var body_animation: AnimatedSprite2D = $AnimatedSprite2D
-@onready var fireball_spawn_position: Marker2D = %FireballSpawnPosition
-@onready var fireball_spawn_anchor: Node2D = $FireballSpawnAnchor
 @onready var enemy_movement_component: EnemyMovementComponent = $EnemyMovementComponent
+@onready var projectile_controller_componenet: Node2D = $ProjectileControllerComponenet
 
-const FIREBALL: PackedScene = preload("uid://c42ge5awb3rpv")
 
 func _ready() -> void:
 	fireball_cast_animation.visible = false;
@@ -27,7 +25,7 @@ func face_player() -> void:
 	if direction == Vector2.ZERO: return
 	var angle_to = Vector2.DOWN.angle_to(direction)
 	fireball_cast_animation.rotation = angle_to
-	fireball_spawn_anchor.rotation = angle_to
+	projectile_controller_componenet.rotation = angle_to
 	body_animation.play("cast_%s" % [Helpers.get_direction_suffix(direction)])
 	
 func play_cast_animation() -> void:
@@ -40,7 +38,5 @@ func play_cast_animation() -> void:
 func spawn_fireball() -> void:
 	var target := get_player()
 	if target == null: return
-	var fireball_instance = FIREBALL.instantiate()
-	fireball_instance.global_position = fireball_spawn_position.global_position
-	fireball_instance.direction = (target.global_position - fireball_instance.global_position).normalized()
-	get_parent().add_child(fireball_instance)
+	var target_direction = (target.global_position - projectile_controller_componenet.get_spawn_point_position()).normalized()
+	projectile_controller_componenet.launch_projectile(target_direction)

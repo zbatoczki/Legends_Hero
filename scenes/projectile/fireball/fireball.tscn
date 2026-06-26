@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ddkfvr6n062yp"]
+
+[ext_resource type="Script" uid="uid://cynlg01m653q6" path="res://scenes/projectile/base/projectile.gd" id="1_cs8m4"]
+[ext_resource type="SpriteFrames" uid="uid://bmnmbl25wcerw" path="res://resources/sprite_frames/fireball_sprite_frames.tres" id="2_2s6h5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8015"]
+radius = 4.0
+
+[node name="Projectile" type="Area2D" unique_id=1728077247]
+collision_layer = 64
+collision_mask = 9
+script = ExtResource("1_cs8m4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1273986278]
+rect = Rect2(-4, -4, 8, 8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1897113714]
+sprite_frames = ExtResource("2_2s6h5")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903625193]
+shape = SubResource("CircleShape2D_t8015")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

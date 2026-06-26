@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://d1w5ccem33kle" path="res://scenes/player/Player.tscn" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://c687026o6q8ox" path="res://scenes/main/main.gd" id="1_k2fmo"]
-[ext_resource type="PackedScene" uid="uid://cdimvr2cop440" path="res://scenes/enemies/slime/slime.tscn" id="2_iuonh"]
 [ext_resource type="TileSet" uid="uid://l5x3prwpjwd" path="res://resources/tilesets/enviornment_tileset.tres" id="2_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://d3wwvg740nn1x" path="res://scenes/components/ui/health_meter.tscn" id="5_6q06x"]
 [ext_resource type="PackedScene" uid="uid://g77ea4n7074c" path="res://scenes/enemies/fire_cultist/fire_cultist.tscn" id="5_ow5a4"]
@@ -17,37 +16,6 @@ tile_map_data = PackedByteArray("AAAJAAUAAAASAAsAAAAJAAQAAAASAAoAAAAJAAMAAAASAAo
 tile_set = ExtResource("2_l3cfh")
 
 [node name="FireCultist" parent="." unique_id=1052478599 instance=ExtResource("5_ow5a4")]
-
-[node name="FireCultist2" parent="." unique_id=1301108340 instance=ExtResource("5_ow5a4")]
-
-[node name="FireCultist3" parent="." unique_id=2047182611 instance=ExtResource("5_ow5a4")]
-
-[node name="Slime" parent="." unique_id=516751510 instance=ExtResource("2_iuonh")]
-position = Vector2(-112, -48)
-
-[node name="Slime2" parent="." unique_id=970408563 instance=ExtResource("2_iuonh")]
-position = Vector2(48, -48)
-
-[node name="Slime3" parent="." unique_id=1797274684 instance=ExtResource("2_iuonh")]
-position = Vector2(-64, -48)
-
-[node name="Slime4" parent="." unique_id=2013977879 instance=ExtResource("2_iuonh")]
-position = Vector2(16, -48)
-
-[node name="EnemyMovementComponent" parent="Slime4" index="0" unique_id=1667818128]
-movement_mode = 2
-
-[node name="Slime5" parent="." unique_id=1130780464 instance=ExtResource("2_iuonh")]
-position = Vector2(-80, 0)
-
-[node name="EnemyMovementComponent" parent="Slime5" index="0" unique_id=1667818128]
-movement_mode = 2
-
-[node name="Slime6" parent="." unique_id=788135930 instance=ExtResource("2_iuonh")]
-position = Vector2(64, -16)
-
-[node name="EnemyMovementComponent" parent="Slime6" index="0" unique_id=1667818128]
-movement_mode = 2
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
 position = Vector2(0, 64)
@@ -72,7 +40,3 @@ text = "Reset Scene"
 alignment = 0
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
-
-[editable path="Slime4"]
-[editable path="Slime5"]
-[editable path="Slime6"]

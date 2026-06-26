@@ -1,8 +1,10 @@
-class_name Fireball extends Area2D
+class_name Projectile extends Area2D
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var direction: Vector2
-
 var speed: float = 100.0
+
 
 func _process(delta: float) -> void:
 	global_position += direction * speed * delta

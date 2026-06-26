@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c42ge5awb3rpv"]
+
+[ext_resource type="Script" uid="uid://cynlg01m653q6" path="res://scenes/projectile/base/projectile.gd" id="1_grvey"]
+
+[node name="Projectile" type="Area2D" unique_id=1728077247 groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_grvey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903625193]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1897113714]
+autoplay = "default"
+frame_progress = 0.38224438
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1273986278]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

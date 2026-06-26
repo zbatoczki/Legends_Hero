@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://4v88baxrxfu8"]
+
+[ext_resource type="Script" uid="uid://c8ivkpo50st5u" path="res://scenes/projectile/base/projectile_controller_componenet.gd" id="1_pftqx"]
+
+[node name="ProjectileControllerComponenet" type="Node2D" unique_id=372966315]
+script = ExtResource("1_pftqx")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1674892035]
