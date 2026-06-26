@@ -290,7 +290,7 @@ size = Vector2(38, 15)
 radius = 6.0
 height = 17.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1757246669]
+[node name="Player" type="CharacterBody2D" unique_id=1757246669 groups=["Player"]]
 collision_mask = 28
 script = ExtResource("1_ov1oi")
 sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps"), ExtResource("3_kswpp")])

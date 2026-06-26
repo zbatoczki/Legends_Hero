@@ -35,8 +35,9 @@ func play_sword_swing_sound() -> void:
 func _on_damage_component_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Enemy"): return
 	
-	var knockback_direction = (body.global_position - global_position).normalized()
-	body.knockback_component.apply_knockback(knockback_direction, 300.0, 0.12)
+	if "knockback_component" in body and body.knockback_component != null:
+		var knockback_direction = (body.global_position - global_position).normalized()
+		body.knockback_component.apply_knockback(knockback_direction, 300.0, 0.12)
 	body.take_damage(1)
 
 
