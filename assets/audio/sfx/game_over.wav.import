@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://kb8adks2tf12"
-path="res://.godot/imported/Success 1.wav-5bd1b6f3945b5f8c83c174141a3f846b.sample"
+uid="uid://imjqi2tbrx8j"
+path="res://.godot/imported/game_over.wav-8dba0548eb31b188d8884951ca7cd610.sample"
 
 [deps]
 
-source_file="res://assets/audio/Success 1.wav"
-dest_files=["res://.godot/imported/Success 1.wav-5bd1b6f3945b5f8c83c174141a3f846b.sample"]
+source_file="res://assets/audio/sfx/game_over.wav"
+dest_files=["res://.godot/imported/game_over.wav-8dba0548eb31b188d8884951ca7cd610.sample"]
 
 [params]
 

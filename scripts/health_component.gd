@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _emit() -> void:
 	health_changed.emit(current_health, max_health)
-	print("HP: %d / %d" % [current_health, max_health])
 	
 func damage(amount: int) -> void:
 	current_health = clamp(current_health - amount, 0, max_health)

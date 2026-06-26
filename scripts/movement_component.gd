@@ -7,13 +7,9 @@ class_name MovementComponent extends Node
 @export var speed: float = 50.0
 
 var direction : Vector2 = Vector2.ZERO
-var last_direction : Vector2 = Vector2.DOWN
+var last_direction : Vector2 = Vector2.UP
 var is_blocking: bool = false
 var is_attacking: bool = false
-
-
-func _ready() -> void:
-	sprite.animation = "walk_down"
 
 func tick(delta: float) -> void:
 	if body == null: return

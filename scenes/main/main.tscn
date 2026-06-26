@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c687026o6q8ox" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://cdimvr2cop440" path="res://scenes/enemies/slime/slime.tscn" id="2_iuonh"]
 [ext_resource type="TileSet" uid="uid://l5x3prwpjwd" path="res://resources/tilesets/enviornment_tileset.tres" id="2_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://d3wwvg740nn1x" path="res://scenes/components/ui/health_meter.tscn" id="5_6q06x"]
 
 [node name="Main" type="Node" unique_id=377360141]
 script = ExtResource("1_k2fmo")
@@ -15,6 +16,7 @@ tile_map_data = PackedByteArray("AAAJAAUAAAASAAsAAAAJAAQAAAASAAoAAAAJAAMAAAASAAo
 tile_set = ExtResource("2_l3cfh")
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
+position = Vector2(0, 64)
 
 [node name="Slime" parent="." unique_id=516751510 instance=ExtResource("2_iuonh")]
 position = Vector2(112, 0)
@@ -28,13 +30,23 @@ position = Vector2(16, -64)
 [node name="Slime4" parent="." unique_id=592754712 instance=ExtResource("2_iuonh")]
 position = Vector2(-112, -64)
 
-[node name="Button" type="Button" parent="." unique_id=207375462]
-offset_left = 96.0
-offset_top = 48.0
-offset_right = 133.0
-offset_bottom = 64.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1570300550]
+
+[node name="HealthBar" parent="CanvasLayer" unique_id=417283380 node_paths=PackedStringArray("player") instance=ExtResource("5_6q06x")]
+player = NodePath("../../Player")
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=207375462]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 5
 text = "Reset Scene"
 alignment = 0
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

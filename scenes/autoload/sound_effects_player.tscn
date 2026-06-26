@@ -1,14 +1,22 @@
 [gd_scene format=3 uid="uid://donw4pepoqbq1"]
 
-[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/damage.ogg" id="1_3s08l"]
+[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/sfx/damage.ogg" id="1_3s08l"]
 [ext_resource type="Script" uid="uid://mgnkohd4iv7o" path="res://scenes/autoload/sound_effects_player.gd" id="1_uhgci"]
-[ext_resource type="AudioStream" uid="uid://imjqi2tbrx8j" path="res://assets/audio/game_over.wav" id="3_huc7s"]
+[ext_resource type="AudioStream" uid="uid://imjqi2tbrx8j" path="res://assets/audio/sfx/game_over.wav" id="3_huc7s"]
+[ext_resource type="AudioStream" uid="uid://c0irk36ucfhbg" path="res://assets/audio/music/dungeon.ogg" id="4_c62p3"]
 
 [node name="SoundEffectsPlayer" type="Node" unique_id=301109113]
 script = ExtResource("1_uhgci")
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1544944752]
 stream = ExtResource("1_3s08l")
+bus = &"SFX"
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=270140806]
 stream = ExtResource("3_huc7s")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=719904621]
+stream = ExtResource("4_c62p3")
+autoplay = true
+bus = &"Music"

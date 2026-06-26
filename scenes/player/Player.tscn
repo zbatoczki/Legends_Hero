@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://t8umyaqo8jew" path="res://assets/player/attack_sprites/atack_down.png" id="1_180ig"]
 [ext_resource type="Script" uid="uid://cfwnkyjeohsul" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Texture2D" uid="uid://cfgyfoppg3pwx" path="res://assets/player/attack_sprites/attack_left.png" id="2_20koh"]
-[ext_resource type="AudioStream" uid="uid://ifjmd78iosmj" path="res://assets/audio/sword_swing_1_a.ogg" id="2_pi3ps"]
+[ext_resource type="AudioStream" uid="uid://ifjmd78iosmj" path="res://assets/audio/sfx/sword_swing_1_a.ogg" id="2_pi3ps"]
 [ext_resource type="Script" uid="uid://gi1dv2f2dyqy" path="res://scripts/input_component.gd" id="2_rn7t0"]
-[ext_resource type="AudioStream" uid="uid://bj3xopgyjvwyj" path="res://assets/audio/sword_swing_1_b.ogg" id="3_kswpp"]
+[ext_resource type="AudioStream" uid="uid://bj3xopgyjvwyj" path="res://assets/audio/sfx/sword_swing_1_b.ogg" id="3_kswpp"]
 [ext_resource type="Texture2D" uid="uid://84aqde6akq1u" path="res://assets/player/attack_sprites/attack_right.png" id="3_ov1oi"]
 [ext_resource type="Script" uid="uid://gryu33hl1mx4" path="res://scripts/movement_component.gd" id="3_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://dwlunda0x4ynr" path="res://assets/player/attack_sprites/attack_up.png" id="4_rn7t0"]
@@ -310,7 +310,6 @@ metadata/_custom_type_script = "uid://gryu33hl1mx4"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=895892289]
 script = ExtResource("6_2xrq6")
-max_health = 3
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=498010284]

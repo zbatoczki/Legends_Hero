@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dybijuove8t1o" path="res://assets/enemy_explosion.png" id="1_62bp1"]
 [ext_resource type="Script" uid="uid://c4scfd6nd4pox" path="res://scenes/components/enemy_death_component.gd" id="2_asc1d"]
-[ext_resource type="AudioStream" uid="uid://vf2r5evijbi5" path="res://assets/audio/enemy_death.ogg" id="3_2sxr7"]
+[ext_resource type="AudioStream" uid="uid://vf2r5evijbi5" path="res://assets/audio/sfx/enemy_death.ogg" id="3_2sxr7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b4cc"]
 atlas = ExtResource("1_62bp1")

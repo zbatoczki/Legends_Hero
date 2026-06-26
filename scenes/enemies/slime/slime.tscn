@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="2_58cyt"]
 [ext_resource type="Texture2D" uid="uid://bpci64twkb7mb" path="res://assets/enemies/slime/slime_particle.png" id="3_5gf84"]
 [ext_resource type="Script" uid="uid://o7njoolsg54g" path="res://scripts/knockback_component.gd" id="4_t0nju"]
-[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/damage.ogg" id="6_58cyt"]
+[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/sfx/damage.ogg" id="6_58cyt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58cyt"]
 atlas = ExtResource("1_oqmci")
