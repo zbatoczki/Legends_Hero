@@ -17,7 +17,7 @@ func tick(delta: float) -> void:
 	# Remember which way we're facing whenever we actually move, so we can
 	# keep facing that way while idle or attacking.
 	if direction != Vector2.ZERO:
-		last_direction = _cardinal(direction)
+		last_direction = Helpers.get_cardinal_direction(direction)
 
 	# Let attack animation play out before accepting movement again.
 	if sprite.is_playing() and sprite.animation.begins_with("attack"):
@@ -40,26 +40,13 @@ func tick(delta: float) -> void:
 
 	body.move_and_slide()
 
-# Collapse a (possibly diagonal) movement vector down to a single cardinal
-# direction, picking the dominant axis.
-func _cardinal(dir: Vector2) -> Vector2:
-	if abs(dir.x) > abs(dir.y):
-		return Vector2.RIGHT if dir.x > 0 else Vector2.LEFT
-	return Vector2.DOWN if dir.y > 0 else Vector2.UP
-
-# "up" / "down" / "left" / "right" suffix for the given cardinal direction.
-func _suffix(dir: Vector2) -> String:
-	if dir == Vector2.UP: return "up"
-	if dir == Vector2.LEFT: return "left"
-	if dir == Vector2.RIGHT: return "right"
-	return "down"
 
 func set_attack_sprite() -> void:
-	sprite.play("attack_" + _suffix(last_direction))
+	sprite.play("attack_" + Helpers.get_direction_suffix(last_direction))
 
 func set_walking_sprite() -> void:
 	var prefix := "block" if is_blocking else "walk"
-	var anim := prefix + "_" + _suffix(last_direction)
+	var anim := prefix + "_" + Helpers.get_direction_suffix(last_direction)
 
 	if direction == Vector2.ZERO:
 		sprite.animation = anim

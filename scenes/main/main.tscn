@@ -23,16 +23,31 @@ tile_set = ExtResource("2_l3cfh")
 [node name="FireCultist3" parent="." unique_id=2047182611 instance=ExtResource("5_ow5a4")]
 
 [node name="Slime" parent="." unique_id=516751510 instance=ExtResource("2_iuonh")]
+position = Vector2(-112, -48)
 
 [node name="Slime2" parent="." unique_id=970408563 instance=ExtResource("2_iuonh")]
+position = Vector2(48, -48)
 
 [node name="Slime3" parent="." unique_id=1797274684 instance=ExtResource("2_iuonh")]
+position = Vector2(-64, -48)
 
 [node name="Slime4" parent="." unique_id=2013977879 instance=ExtResource("2_iuonh")]
+position = Vector2(16, -48)
+
+[node name="EnemyMovementComponent" parent="Slime4" index="0" unique_id=1667818128]
+movement_mode = 2
 
 [node name="Slime5" parent="." unique_id=1130780464 instance=ExtResource("2_iuonh")]
+position = Vector2(-80, 0)
+
+[node name="EnemyMovementComponent" parent="Slime5" index="0" unique_id=1667818128]
+movement_mode = 2
 
 [node name="Slime6" parent="." unique_id=788135930 instance=ExtResource("2_iuonh")]
+position = Vector2(64, -16)
+
+[node name="EnemyMovementComponent" parent="Slime6" index="0" unique_id=1667818128]
+movement_mode = 2
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
 position = Vector2(0, 64)
@@ -57,3 +72,7 @@ text = "Reset Scene"
 alignment = 0
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
+
+[editable path="Slime4"]
+[editable path="Slime5"]
+[editable path="Slime6"]

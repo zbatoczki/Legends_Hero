@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bav46m0nh402h" path="res://scenes/enemies/fire_cultist/fire_cultist.gd" id="1_ltlrt"]
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="3_euxpr"]
+[ext_resource type="Script" uid="uid://dd288s4lfbjj0" path="res://scripts/enemy_movement_component.gd" id="3_wander"]
 [ext_resource type="Texture2D" uid="uid://cdhck76gy5d1c" path="res://assets/enemies/fire_cultist/fire_cultist_cast_down.png" id="4_78daa"]
 [ext_resource type="Texture2D" uid="uid://copkkmhnd3rkn" path="res://assets/enemies/fire_cultist/fire_cultist_cast_left.png" id="5_7vy34"]
 [ext_resource type="Texture2D" uid="uid://btu7nqsyox0ei" path="res://assets/enemies/fire_cultist/fire_cultist_cast_right.png" id="6_att11"]
@@ -211,6 +212,13 @@ animations = [{
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_ltlrt")
+
+[node name="EnemyMovementComponent" type="Node" parent="." unique_id=550023316 node_paths=PackedStringArray("body")]
+script = ExtResource("3_wander")
+body = NodePath("..")
+movement_mode = 1
+auto_retarget = false
+wander_radius = 50.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1239411559]
 script = ExtResource("3_euxpr")

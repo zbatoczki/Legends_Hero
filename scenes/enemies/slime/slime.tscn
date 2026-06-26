@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://c8eq1yyeof8oa" path="res://scenes/enemies/slime/slime.gd" id="1_5gf84"]
 [ext_resource type="Texture2D" uid="uid://b3j6jq6v4c5uu" path="res://assets/enemies/slime/slime_idle.png" id="1_oqmci"]
 [ext_resource type="Texture2D" uid="uid://owf0xeky6ruy" path="res://assets/enemies/slime/slime_jump.png" id="2_1r730"]
-[ext_resource type="Script" uid="uid://cxe7yj0sa8i2f" path="res://scripts/random_movement_component.gd" id="2_8fhgo"]
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="2_58cyt"]
 [ext_resource type="Texture2D" uid="uid://bpci64twkb7mb" path="res://assets/enemies/slime/slime_particle.png" id="3_5gf84"]
 [ext_resource type="Script" uid="uid://o7njoolsg54g" path="res://scripts/knockback_component.gd" id="4_t0nju"]
-[ext_resource type="AudioStream" uid="uid://bqpgr8ynquec7" path="res://assets/audio/sfx/damage.ogg" id="6_58cyt"]
+[ext_resource type="Script" uid="uid://dd288s4lfbjj0" path="res://scripts/enemy_movement_component.gd" id="5_wander"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58cyt"]
 atlas = ExtResource("1_oqmci")
@@ -130,22 +129,22 @@ radius = 6.0
 
 [node name="Slime" type="CharacterBody2D" unique_id=516751510 groups=["Enemy"]]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 15
 script = ExtResource("1_5gf84")
 
-[node name="RandomMovementComponent" type="Node" parent="." unique_id=664164350 node_paths=PackedStringArray("body")]
-script = ExtResource("2_8fhgo")
+[node name="EnemyMovementComponent" type="Node" parent="." unique_id=1667818128 node_paths=PackedStringArray("body", "knockback_component")]
+script = ExtResource("5_wander")
 body = NodePath("..")
-metadata/_custom_type_script = "uid://cxe7yj0sa8i2f"
+knockback_component = NodePath("../KnockbackComponent")
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=1943426705]
+script = ExtResource("4_t0nju")
+metadata/_custom_type_script = "uid://o7njoolsg54g"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=553820263]
 script = ExtResource("2_58cyt")
 max_health = 3
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
-
-[node name="KnockbackComponent" type="Node" parent="." unique_id=1943426705]
-script = ExtResource("4_t0nju")
-metadata/_custom_type_script = "uid://o7njoolsg54g"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580333104]
 sprite_frames = SubResource("SpriteFrames_cii4s")
@@ -156,11 +155,4 @@ autoplay = "idle"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_cii4s")
 
-[node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1519084998]
-stream = ExtResource("6_58cyt")
-
-[node name="RandomMovementTimer" type="Timer" parent="." unique_id=2115698111]
-wait_time = 3.0
-
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]

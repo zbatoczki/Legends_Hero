@@ -18,5 +18,4 @@ bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=719904621]
 stream = ExtResource("4_c62p3")
-autoplay = true
 bus = &"Music"
