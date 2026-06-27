@@ -42,4 +42,20 @@ alignment = 0
 position = Vector2(-32, -16)
 item_resource = ExtResource("6_hujxm")
 
+[node name="PickUpItem2" parent="." unique_id=913135632 instance=ExtResource("5_ow5a4")]
+position = Vector2(0, -32)
+item_resource = ExtResource("6_hujxm")
+
+[node name="PickUpItem3" parent="." unique_id=292511119 instance=ExtResource("5_ow5a4")]
+position = Vector2(32, -16)
+item_resource = ExtResource("6_hujxm")
+
+[node name="PickUpItem4" parent="." unique_id=1806330780 instance=ExtResource("5_ow5a4")]
+position = Vector2(48, -48)
+item_resource = ExtResource("6_hujxm")
+
+[node name="PickUpItem5" parent="." unique_id=1248756492 instance=ExtResource("5_ow5a4")]
+position = Vector2(-16, -48)
+item_resource = ExtResource("6_hujxm")
+
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]

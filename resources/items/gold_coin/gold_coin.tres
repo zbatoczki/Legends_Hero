@@ -13,4 +13,5 @@ static_texture = ExtResource("4_le45y")
 animated_texture = ExtResource("1_wclbf")
 collision_shape = ExtResource("2_re83i")
 sound_effect = ExtResource("4_re83i")
+max_stacks = 999
 metadata/_custom_type_script = "uid://dn4phn21ekk0y"

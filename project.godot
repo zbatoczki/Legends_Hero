@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://d0ylppukq2jxb"
 [autoload]
 
 SoundEffectsPlayer="*uid://donw4pepoqbq1"
+ItemEventBus="*uid://btr1orqjqifeb"
 
 [display]
 

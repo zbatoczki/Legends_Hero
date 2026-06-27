@@ -1,7 +1,5 @@
 class_name PickupItem extends Area2D
 
-signal item_picked_up(item: ItemResource)
-
 @export var item_resource: ItemResource
 
 @onready var animated_texture: AnimatedSprite2D = $AnimatedTexture
@@ -32,5 +30,5 @@ func set_item_texture() -> void:
 
 func _on_player_entered(_body: Node2D) -> void:
 	SoundEffectsPlayer.play_item_sound(item_resource.sound_effect)
-	item_picked_up.emit(item_resource)
+	ItemEventBus.emit_item_picked_up(item_resource)
 	queue_free()
