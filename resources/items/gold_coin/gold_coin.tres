@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://bl7142rrwkx83"]
+
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_bjp6u"]
+[ext_resource type="SpriteFrames" uid="uid://bdb6pb6xv2d87" path="res://resources/items/gold_coin/goild_coin_sprite_frames.tres" id="1_wclbf"]
+[ext_resource type="Shape2D" uid="uid://da1rw5jd6huu" path="res://resources/items/gold_coin/coin_collision_shape.tres" id="2_re83i"]
+[ext_resource type="Texture2D" uid="uid://csfij1e2ur58u" path="res://resources/items/gold_coin/gold_coin_static_texture.tres" id="4_le45y"]
+[ext_resource type="AudioStream" uid="uid://byqbmyv70hqaw" path="res://assets/audio/sfx/coin.wav" id="4_re83i"]
+
+[resource]
+script = ExtResource("1_bjp6u")
+name = "Gold Coin"
+static_texture = ExtResource("4_le45y")
+animated_texture = ExtResource("1_wclbf")
+collision_shape = ExtResource("2_re83i")
+sound_effect = ExtResource("4_re83i")
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"
