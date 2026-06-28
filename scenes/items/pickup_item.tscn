@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://cpdask6vptkbo"]
 
 [ext_resource type="Script" uid="uid://xovrdtqmfmis" path="res://scenes/items/pickup_item.gd" id="1_an7b5"]
-[ext_resource type="SpriteFrames" uid="uid://bdb6pb6xv2d87" path="res://resources/items/gold_coin/goild_coin_sprite_frames.tres" id="1_h0ltu"]
 [ext_resource type="Shape2D" uid="uid://da1rw5jd6huu" path="res://resources/items/gold_coin/coin_collision_shape.tres" id="2_an7b5"]
-[ext_resource type="Texture2D" uid="uid://csfij1e2ur58u" path="res://resources/items/gold_coin/gold_coin_static_texture.tres" id="3_8tahl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_koxyb"]
+size = Vector2(8, 8)
 
 [node name="PickUpItem" type="Area2D" unique_id=1552942148]
 collision_layer = 256
 script = ExtResource("1_an7b5")
 
 [node name="AnimatedTexture" type="AnimatedSprite2D" parent="." unique_id=802217488]
-sprite_frames = ExtResource("1_h0ltu")
 autoplay = "default"
 
 [node name="StaticTexture" type="Sprite2D" parent="." unique_id=16965482]
-texture = ExtResource("3_8tahl")
+texture = SubResource("PlaceholderTexture2D_koxyb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719037482]
 shape = ExtResource("2_an7b5")

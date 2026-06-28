@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://ci28aspoxqds0"]
+
+[ext_resource type="Shape2D" uid="uid://bj8xqiynn6i1x" path="res://resources/items/keys/key_collision_shape.tres" id="1_4d8ro"]
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_awl4j"]
+[ext_resource type="AudioStream" uid="uid://kb8adks2tf12" path="res://assets/audio/sfx/success.wav" id="2_phhyv"]
+[ext_resource type="Texture2D" uid="uid://ciijeve6urck6" path="res://raw_assets/Legend_of_Zink_Asset_Pack/Menu_Icons/PNG/sprIconBossKey.png" id="3_4d8ro"]
+
+[resource]
+script = ExtResource("1_awl4j")
+name = "Boss Key"
+static_texture = ExtResource("3_4d8ro")
+collision_shape = ExtResource("1_4d8ro")
+sound_effect = ExtResource("2_phhyv")
+max_stacks = 1
+in_hud = true
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"

@@ -37,6 +37,15 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="New Game Project"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://resources/": "green",
+"res://scenes/": "blue",
+"res://scripts/": "orange"
+}
+
 [global_group]
 
 Enemy=""

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://u4dmu44hfmrq"]
+
+[ext_resource type="Shape2D" uid="uid://cime2h774gfe6" path="res://resources/items/arrow/arrow_item_collision_shape.tres" id="1_kcakt"]
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_xmbfu"]
+[ext_resource type="AudioStream" uid="uid://16rxhvmxqien" path="res://assets/audio/sfx/item.wav" id="3_nmoq5"]
+[ext_resource type="Texture2D" uid="uid://5vyt4pusdhxc" path="res://assets/items/arrow.png" id="4_w80v1"]
+
+[resource]
+script = ExtResource("1_xmbfu")
+name = "Arrow"
+static_texture = ExtResource("4_w80v1")
+collision_shape = ExtResource("1_kcakt")
+sound_effect = ExtResource("3_nmoq5")
+max_stacks = 99
+in_hud = true
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"

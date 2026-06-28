@@ -24,6 +24,7 @@ func set_item_texture() -> void:
 		printerr("Textures are not provided in the item resource")
 	if animated_texture.sprite_frames != null:
 		static_texture.visible = false
+		animated_texture.play()
 	else:  
 		animated_texture.visible = false
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://byfil7srbwsfi"]
+
+[ext_resource type="Shape2D" uid="uid://bj8xqiynn6i1x" path="res://resources/items/keys/key_collision_shape.tres" id="1_813io"]
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="2_us7mf"]
+[ext_resource type="AudioStream" uid="uid://16rxhvmxqien" path="res://assets/audio/sfx/item.wav" id="3_h2ira"]
+[ext_resource type="Texture2D" uid="uid://du8q85s18hogs" path="res://raw_assets/Legend_of_Zink_Asset_Pack/Menu_Icons/PNG/sprIconKey.png" id="4_is76h"]
+
+[resource]
+script = ExtResource("2_us7mf")
+name = "Key"
+static_texture = ExtResource("4_is76h")
+collision_shape = ExtResource("1_813io")
+sound_effect = ExtResource("3_h2ira")
+max_stacks = 99
+in_hud = true
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"

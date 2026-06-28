@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://cb5nvebi8rjrx"]
+
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_cbe5l"]
+[ext_resource type="Shape2D" uid="uid://dbnitb5rppk4m" path="res://resources/items/bomb/bomb_collision_shape.tres" id="1_t5fqa"]
+[ext_resource type="AudioStream" uid="uid://16rxhvmxqien" path="res://assets/audio/sfx/item.wav" id="3_drtnm"]
+[ext_resource type="Texture2D" uid="uid://dj87n47tgc5hy" path="res://assets/items/bomb_mini.png" id="4_kv00b"]
+
+[resource]
+script = ExtResource("1_cbe5l")
+name = "Bomb"
+static_texture = ExtResource("4_kv00b")
+collision_shape = ExtResource("1_t5fqa")
+sound_effect = ExtResource("3_drtnm")
+max_stacks = 99
+equipable = true
+in_hud = true
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"

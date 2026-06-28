@@ -3,11 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://d1w5ccem33kle" path="res://scenes/player/Player.tscn" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://c687026o6q8ox" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="TileSet" uid="uid://l5x3prwpjwd" path="res://resources/tilesets/enviornment_tileset.tres" id="2_l3cfh"]
-[ext_resource type="PackedScene" uid="uid://cdimvr2cop440" path="res://scenes/enemies/slime/slime.tscn" id="3_yyfjg"]
+[ext_resource type="Resource" uid="uid://u4dmu44hfmrq" path="res://resources/items/arrow/arrow.tres" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://6xft1j3hbq1i" path="res://scenes/components/ui/hud.tscn" id="4_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://g77ea4n7074c" path="res://scenes/enemies/fire_cultist/fire_cultist.tscn" id="5_ow5a4"]
 [ext_resource type="Resource" uid="uid://bl7142rrwkx83" path="res://resources/items/gold_coin/gold_coin.tres" id="6_hujxm"]
+[ext_resource type="Resource" uid="uid://byfil7srbwsfi" path="res://resources/items/keys/key.tres" id="7_a8run"]
 [ext_resource type="PackedScene" uid="uid://cpdask6vptkbo" path="res://scenes/items/pickup_item.tscn" id="7_b1x3f"]
+[ext_resource type="Resource" uid="uid://ci28aspoxqds0" path="res://resources/items/keys/key_boss.tres" id="8_ouso4"]
+[ext_resource type="Resource" uid="uid://cb5nvebi8rjrx" path="res://resources/items/bomb/bomb.tres" id="9_b1x3f"]
 
 [node name="Main" type="Node" unique_id=377360141 node_paths=PackedStringArray("item_hud")]
 script = ExtResource("1_k2fmo")
@@ -19,42 +21,32 @@ tile_set = ExtResource("2_l3cfh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1864012356]
 
-[node name="Enemies" type="Node2D" parent="." unique_id=257827485]
+[node name="PickUpItem" parent="." unique_id=1552942148 instance=ExtResource("7_b1x3f")]
+position = Vector2(-80, 0)
+item_resource = ExtResource("4_hujxm")
 
-[node name="Slime" parent="Enemies" unique_id=516751510 instance=ExtResource("3_yyfjg")]
-position = Vector2(-96, -32)
+[node name="PickUpItem2" parent="." unique_id=960185179 instance=ExtResource("7_b1x3f")]
+position = Vector2(-48, 0)
+item_resource = ExtResource("9_b1x3f")
 
-[node name="Slime2" parent="Enemies" unique_id=797789635 instance=ExtResource("3_yyfjg")]
-position = Vector2(-64, 0)
+[node name="PickUpItem3" parent="." unique_id=918687762 instance=ExtResource("7_b1x3f")]
+position = Vector2(-16, 0)
+item_resource = ExtResource("6_hujxm")
 
-[node name="Slime3" parent="Enemies" unique_id=1062899273 instance=ExtResource("3_yyfjg")]
-position = Vector2(96, -48)
+[node name="PickUpItem4" parent="." unique_id=2061575522 instance=ExtResource("7_b1x3f")]
+position = Vector2(16, 0)
+item_resource = ExtResource("4_hujxm")
 
-[node name="Slime4" parent="Enemies" unique_id=1204912615 instance=ExtResource("3_yyfjg")]
-position = Vector2(112, 48)
+[node name="PickUpItem5" parent="." unique_id=2061711965 instance=ExtResource("7_b1x3f")]
+position = Vector2(48, 0)
+item_resource = ExtResource("7_a8run")
 
-[node name="Slime5" parent="Enemies" unique_id=75191053 instance=ExtResource("3_yyfjg")]
-position = Vector2(-112, 48)
-
-[node name="Slime6" parent="Enemies" unique_id=2022669925 instance=ExtResource("3_yyfjg")]
-position = Vector2(80, 32)
-
-[node name="Slime7" parent="Enemies" unique_id=641247861 instance=ExtResource("3_yyfjg")]
-position = Vector2(-64, -64)
-
-[node name="Slime8" parent="Enemies" unique_id=424896199 instance=ExtResource("3_yyfjg")]
-position = Vector2(0, -64)
-
-[node name="Slime9" parent="Enemies" unique_id=1569081715 instance=ExtResource("3_yyfjg")]
-position = Vector2(48, -64)
-
-[node name="Slime11" parent="Enemies" unique_id=570448510 instance=ExtResource("3_yyfjg")]
-position = Vector2(64, -16)
-
-[node name="FireCultist" parent="Enemies" unique_id=1052478599 instance=ExtResource("5_ow5a4")]
-position = Vector2(-128, -64)
+[node name="PickUpItem6" parent="." unique_id=469213770 instance=ExtResource("7_b1x3f")]
+position = Vector2(80, 0)
+item_resource = ExtResource("8_ouso4")
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
+z_index = 1
 position = Vector2(0, 64)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1570300550]
@@ -80,26 +72,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 5
 text = "Reset Scene"
 alignment = 0
-
-[node name="PickUpItem" parent="." unique_id=1552942148 instance=ExtResource("7_b1x3f")]
-position = Vector2(-32, -16)
-item_resource = ExtResource("6_hujxm")
-
-[node name="PickUpItem2" parent="." unique_id=913135632 instance=ExtResource("7_b1x3f")]
-position = Vector2(0, -32)
-item_resource = ExtResource("6_hujxm")
-
-[node name="PickUpItem3" parent="." unique_id=292511119 instance=ExtResource("7_b1x3f")]
-position = Vector2(32, -16)
-item_resource = ExtResource("6_hujxm")
-
-[node name="PickUpItem4" parent="." unique_id=1806330780 instance=ExtResource("7_b1x3f")]
-position = Vector2(48, -48)
-item_resource = ExtResource("6_hujxm")
-
-[node name="PickUpItem5" parent="." unique_id=1248756492 instance=ExtResource("7_b1x3f")]
-position = Vector2(-16, -48)
-item_resource = ExtResource("6_hujxm")
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
 

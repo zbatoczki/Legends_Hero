@@ -20,4 +20,4 @@ func update_label(item: String, value: String) -> void:
 	elif item == "arrow": _arrow_label.text = value.pad_zeros(2)
 	elif item == "bomb": _bomb_label.text = value.pad_zeros(2)
 	elif item == "key": _key_label.text = value
-	elif item == "boss_key": _boss_key_label.text = value
+	elif item == "boss key": _boss_key_label.text = value
