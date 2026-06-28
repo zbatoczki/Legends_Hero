@@ -53,6 +53,10 @@ folder_colors={
 Enemy=""
 Player=""
 
+[gui]
+
+theme/custom_font="uid://dhkaprfrlvfqp"
+
 [input]
 
 move_up={

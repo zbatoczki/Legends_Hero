@@ -1,19 +1,8 @@
 [gd_scene format=3 uid="uid://6xft1j3hbq1i"]
 
 [ext_resource type="PackedScene" uid="uid://d3wwvg740nn1x" path="res://scenes/components/ui/health_meter.tscn" id="1_mgkf6"]
-[ext_resource type="Texture2D" uid="uid://bg3wkyfo6c6nc" path="res://assets/items/bomb.png" id="1_sci1a"]
 [ext_resource type="PackedScene" uid="uid://hkk165ydsfqd" path="res://scenes/components/ui/item_hud.tscn" id="2_8jsrf"]
-[ext_resource type="Texture2D" uid="uid://cgott2ckdq5vq" path="res://assets/ui/assign_A.png" id="3_mgkf6"]
-[ext_resource type="Texture2D" uid="uid://d0ik3ahf51peb" path="res://assets/items/bow.png" id="4_j4pfw"]
-[ext_resource type="Texture2D" uid="uid://cetvevl4rsmud" path="res://assets/ui/assign_B.png" id="5_o84a6"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cii4s"]
-texture = ExtResource("3_mgkf6")
-region_rect = Rect2(0, 0, 23, 24)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o84a6"]
-texture = ExtResource("5_o84a6")
-region_rect = Rect2(0, 0, 23, 24)
+[ext_resource type="PackedScene" uid="uid://btxxv1jpyjtfu" path="res://scenes/components/ui/action_panels.tscn" id="3_nuiju"]
 
 [node name="HUD" type="MarginContainer" unique_id=183219108]
 anchors_preset = 10
@@ -44,56 +33,8 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=1388609429]
+[node name="ActionPanels" parent="HBoxContainer" unique_id=496064836 instance=ExtResource("3_nuiju")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/HBoxContainer" unique_id=296712920]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_cii4s")
-
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HBoxContainer/PanelContainer" unique_id=1664125265]
-z_index = -1
-custom_minimum_size = Vector2(14, 12)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/PanelContainer" unique_id=1681150521]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position = Vector2(1, -1)
-texture = ExtResource("4_j4pfw")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/HBoxContainer" unique_id=1885722310]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_o84a6")
-
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/HBoxContainer/PanelContainer2" unique_id=629623837]
-z_index = -1
-custom_minimum_size = Vector2(14, 12)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/PanelContainer2" unique_id=1502389100]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position = Vector2(1, -1)
-texture = ExtResource("1_sci1a")
-expand_mode = 1
-stretch_mode = 5
 
 [editable path="HBoxContainer/HealthMeter"]
