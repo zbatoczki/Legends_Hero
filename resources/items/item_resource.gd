@@ -12,3 +12,4 @@ var stacks := 1
 @export var max_stacks: int
 @export var price: int
 @export var equipable: bool = false
+@export var in_hud: bool = false

@@ -1,5 +1,7 @@
 extends Node
 
+@export var item_hud: ItemHUD
+
 var inventory: Dictionary[String, int] = {}
 
 func _ready() -> void:
@@ -26,7 +28,8 @@ func decrement_item(item: String, amount: int) -> void:
 
 func on_item_picked_up(item: ItemResource) -> void:
 	increment_item(item.name, item.stacks, item.max_stacks)
-	print(inventory)
+	if item.in_hud:
+		item_hud.update_label(item.name.to_lower(), str(inventory[item.name]))
 
 
 #endregion

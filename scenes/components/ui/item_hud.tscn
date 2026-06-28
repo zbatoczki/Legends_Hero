@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://hkk165ydsfqd"]
+
+[ext_resource type="Texture2D" uid="uid://cmni6ov3vvqi4" path="res://assets/items/coin.png" id="1_3wkom"]
+[ext_resource type="Script" uid="uid://uw5156ycdhnu" path="res://scenes/components/ui/item_hud.gd" id="1_8dfre"]
+[ext_resource type="Texture2D" uid="uid://bg3wkyfo6c6nc" path="res://assets/items/bomb.png" id="2_8dfre"]
+[ext_resource type="Texture2D" uid="uid://5vyt4pusdhxc" path="res://assets/items/arrow.png" id="3_465gn"]
+[ext_resource type="Texture2D" uid="uid://bx5w3ikdlcjrn" path="res://assets/items/key_small.png" id="4_uimtv"]
+[ext_resource type="Texture2D" uid="uid://dv8sq3jhl0yic" path="res://assets/items/key_boss.png" id="5_5hh01"]
+
+[node name="ItemHUD" type="HBoxContainer" unique_id=1332137033]
+size_flags_horizontal = 6
+theme_override_constants/separation = 2
+script = ExtResource("1_8dfre")
+
+[node name="Coin" type="VBoxContainer" parent="." unique_id=470427524]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="Coin" unique_id=1733087460]
+custom_minimum_size = Vector2(8, 8)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("1_3wkom")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinLabel" type="Label" parent="Coin" unique_id=587239737]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 5
+text = "999"
+horizontal_alignment = 1
+
+[node name="Arrow" type="VBoxContainer" parent="." unique_id=651824814]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="Arrow" unique_id=1735640202]
+custom_minimum_size = Vector2(8, 8)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_465gn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArrowLabel" type="Label" parent="Arrow" unique_id=70777060]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 5
+text = "99"
+horizontal_alignment = 1
+
+[node name="Bomb" type="VBoxContainer" parent="." unique_id=1360365353]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="Bomb" unique_id=1945171581]
+custom_minimum_size = Vector2(8, 8)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_8dfre")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BombLabel" type="Label" parent="Bomb" unique_id=723158212]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 5
+text = "99"
+horizontal_alignment = 1
+
+[node name="Key" type="VBoxContainer" parent="." unique_id=1698055212]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="Key" unique_id=1442132039]
+custom_minimum_size = Vector2(8, 8)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_uimtv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Key" unique_id=732509829]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 5
+text = "99"
+horizontal_alignment = 1
+
+[node name="BossKey" type="VBoxContainer" parent="." unique_id=1519281755]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="TextureRect" type="TextureRect" parent="BossKey" unique_id=832365434]
+custom_minimum_size = Vector2(8, 8)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_5hh01")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BossKeyLabel" type="Label" parent="BossKey" unique_id=396423468]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 5
+text = "99"
+horizontal_alignment = 1
