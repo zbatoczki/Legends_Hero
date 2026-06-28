@@ -6,7 +6,14 @@
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="2_58cyt"]
 [ext_resource type="Texture2D" uid="uid://bpci64twkb7mb" path="res://assets/enemies/slime/slime_particle.png" id="3_5gf84"]
 [ext_resource type="Script" uid="uid://o7njoolsg54g" path="res://scripts/knockback_component.gd" id="4_t0nju"]
+[ext_resource type="Shader" uid="uid://d0bbwws4v0tkg" path="res://scripts/shaders/white_flash.gdshader" id="5_t0nju"]
 [ext_resource type="Script" uid="uid://dd288s4lfbjj0" path="res://scripts/enemy_movement_component.gd" id="5_wander"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nh86j"]
+resource_local_to_scene = true
+shader = ExtResource("5_t0nju")
+shader_parameter/amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58cyt"]
 atlas = ExtResource("1_oqmci")
@@ -147,6 +154,7 @@ max_health = 3
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580333104]
+material = SubResource("ShaderMaterial_nh86j")
 sprite_frames = SubResource("SpriteFrames_cii4s")
 animation = &"idle"
 autoplay = "idle"
@@ -155,4 +163,5 @@ autoplay = "idle"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_cii4s")
 
+[connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

@@ -6,6 +6,7 @@ class_name Player extends CharacterBody2D
 @onready var sword_hitbox: Area2D = $DamageComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var sword_swing_tracks: Array[AudioStreamOggVorbis] = []
 
@@ -60,3 +61,9 @@ func handle_damage(body: Node2D) -> void:
 	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
 	SoundEffectsPlayer.play_damaged_sound()
 	health_component.damage(1)
+
+
+func _on_damaged() -> void:
+	animated_sprite_2d.material.set_shader_parameter("amount", 1.0)
+	await get_tree().create_timer(0.1).timeout
+	animated_sprite_2d.material.set_shader_parameter("amount", 0)

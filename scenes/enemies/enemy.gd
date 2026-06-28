@@ -1,6 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const DEATH_COMPONENT: PackedScene = preload("uid://d383uqewghmuh")
 
@@ -23,6 +24,15 @@ func get_cardinal_direction_to_player() -> Vector2:
 func take_damage(amount: int) -> void:
 	SoundEffectsPlayer.play_damaged_sound()
 	health_component.damage(amount)
+
+
+func _on_damaged() -> void:
+	if animated_sprite_2d == null or animated_sprite_2d.material == null: 
+		return
+	animated_sprite_2d.material.set_shader_parameter("amount", 1.0)
+	await get_tree().create_timer(0.1).timeout
+	animated_sprite_2d.material.set_shader_parameter("amount", 0)
+
 
 func _on_died() -> void:
 	collision_layer = 0

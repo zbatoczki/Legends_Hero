@@ -6,7 +6,6 @@ var inventory: Dictionary[String, int] = {}
 
 func _ready() -> void:
 	ItemEventBus.item_picked_up.connect(on_item_picked_up)
-	print(inventory)
 
 
 func _on_button_pressed() -> void:
