@@ -13,3 +13,5 @@ var stacks := 1
 @export var price: int
 @export var equipable: bool = false
 @export var in_hud: bool = false
+## Optional. The action performed when this item is equipped to slot A or B.
+@export var action: ActionResource

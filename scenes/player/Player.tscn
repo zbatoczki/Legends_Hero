@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cfgyfoppg3pwx" path="res://assets/player/attack_sprites/attack_left.png" id="2_20koh"]
 [ext_resource type="AudioStream" uid="uid://ifjmd78iosmj" path="res://assets/audio/sfx/sword_swing_1_a.ogg" id="2_pi3ps"]
 [ext_resource type="Script" uid="uid://gi1dv2f2dyqy" path="res://scripts/input_component.gd" id="2_rn7t0"]
-[ext_resource type="AudioStream" uid="uid://bj3xopgyjvwyj" path="res://assets/audio/sfx/sword_swing_1_b.ogg" id="3_kswpp"]
 [ext_resource type="Texture2D" uid="uid://84aqde6akq1u" path="res://assets/player/attack_sprites/attack_right.png" id="3_ov1oi"]
 [ext_resource type="Script" uid="uid://gryu33hl1mx4" path="res://scripts/movement_component.gd" id="3_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://dwlunda0x4ynr" path="res://assets/player/attack_sprites/attack_up.png" id="4_rn7t0"]
@@ -20,6 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://dsis7qay4cc6h" path="res://assets/player/movement_sprites/shield_walk_up.png" id="10_v5i4m"]
 [ext_resource type="Texture2D" uid="uid://crhpq1kriig4a" path="res://assets/player/movement_sprites/shield_walk_down.png" id="11_p1lr0"]
 [ext_resource type="Texture2D" uid="uid://cefky43xq23mq" path="res://assets/player/movement_sprites/shield_walk_left.png" id="12_ro0t8"]
+[ext_resource type="Texture2D" uid="uid://cn06mfwutjqer" path="res://assets/player/attack_sprites/bow/bow_down.png" id="19_x3qp0"]
+[ext_resource type="Texture2D" uid="uid://yx6oncn7yek0" path="res://assets/player/attack_sprites/bow/bow_left.png" id="20_76i7i"]
+[ext_resource type="Texture2D" uid="uid://b1je388nruvgn" path="res://assets/player/attack_sprites/bow/bow_right.png" id="21_mndc6"]
+[ext_resource type="Texture2D" uid="uid://dlac7ovdagxr6" path="res://assets/player/attack_sprites/bow/bow_up.png" id="22_1hh02"]
+[ext_resource type="Resource" uid="uid://b8bowitem01" path="res://resources/items/bow/bow.tres" id="100_bow"]
+[ext_resource type="Resource" uid="uid://cb5nvebi8rjrx" path="res://resources/items/bomb/bomb.tres" id="101_bomb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kswpp"]
 shader = ExtResource("1_kswpp")
@@ -104,6 +109,38 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtkor"]
 atlas = ExtResource("8_pi3ps")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cssr"]
+atlas = ExtResource("19_x3qp0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ws3"]
+atlas = ExtResource("19_x3qp0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwk7e"]
+atlas = ExtResource("20_76i7i")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udvyq"]
+atlas = ExtResource("20_76i7i")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktadw"]
+atlas = ExtResource("21_mndc6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r4bu"]
+atlas = ExtResource("21_mndc6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vtq1"]
+atlas = ExtResource("22_1hh02")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_use2k"]
+atlas = ExtResource("22_1hh02")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4eru"]
@@ -242,6 +279,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5cssr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ws3")
+}],
+"loop": 0,
+"name": &"bow_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwk7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udvyq")
+}],
+"loop": 0,
+"name": &"bow_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktadw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7r4bu")
+}],
+"loop": 0,
+"name": &"bow_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vtq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_use2k")
+}],
+"loop": 0,
+"name": &"bow_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q4eru")
 }, {
 "duration": 1.0,
@@ -298,7 +379,9 @@ height = 17.0
 [node name="Player" type="CharacterBody2D" unique_id=1757246669 groups=["Player"]]
 collision_mask = 28
 script = ExtResource("1_ov1oi")
-sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps"), ExtResource("3_kswpp")])
+sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps")])
+action_a = ExtResource("100_bow")
+action_b = ExtResource("101_bomb")
 
 [node name="InputComponent" type="Node" parent="." unique_id=197525737]
 unique_name_in_owner = true
@@ -325,23 +408,23 @@ metadata/_custom_type_script = "uid://o7njoolsg54g"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1283073682]
 material = SubResource("ShaderMaterial_kswpp")
 sprite_frames = SubResource("SpriteFrames_cii4s")
-animation = &"attack_down"
-frame_progress = 0.53091556
+animation = &"bow_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901547094]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_j4pfw")
 
 [node name="SwordSwing" type="AudioStreamPlayer" parent="." unique_id=1389861521]
+stream = ExtResource("2_pi3ps")
 bus = &"SFX"
 
-[node name="DamageComponent" type="Area2D" parent="." unique_id=869672154]
+[node name="SwordHitBox" type="Area2D" parent="." unique_id=869672154]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent" unique_id=1524326892]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox" unique_id=1524326892]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_cii4s")
 
@@ -354,8 +437,14 @@ monitorable = false
 shape = SubResource("CapsuleShape2D_as2t8")
 debug_color = Color(0.8235294, 0.37254903, 0.38039216, 0.21176471)
 
+[node name="ProjectileSpawnPivot" type="Node2D" parent="." unique_id=652726105]
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="ProjectileSpawnPivot" unique_id=741913180]
+unique_name_in_owner = true
+position = Vector2(0, -13)
+
 [connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="body_entered" from="SwordHitBox" to="." method="_on_damage_component_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

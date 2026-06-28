@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BombAction" format=3 uid="uid://blqtabpjv8r41"]
+
+[ext_resource type="Script" uid="uid://5j8yht37a14n" path="res://resources/actions/bomb_action.gd" id="1_bomb"]
+[ext_resource type="PackedScene" uid="uid://b8bombscene01" path="res://scenes/items/bomb/bomb.tscn" id="2_bomb"]
+
+[resource]
+script = ExtResource("1_bomb")
+bomb_scene = ExtResource("2_bomb")
+cooldown = 0.5

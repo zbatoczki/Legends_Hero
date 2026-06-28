@@ -14,16 +14,18 @@ var is_attacking: bool = false
 func tick(delta: float) -> void:
 	if body == null: return
 
+	# Let action animations (attack, bow) play out before accepting movement again.
+	# Facing is intentionally left untouched here so it stays locked to the
+	# direction the action started in (e.g. an arrow fires the way the bow draws).
+	if sprite.is_playing() and (sprite.animation.begins_with("attack") or sprite.animation.begins_with("bow")):
+		body.velocity = Vector2.ZERO
+		body.move_and_slide()
+		return
+
 	# Remember which way we're facing whenever we actually move, so we can
 	# keep facing that way while idle or attacking.
 	if direction != Vector2.ZERO:
 		last_direction = Helpers.get_cardinal_direction(direction)
-
-	# Let attack animation play out before accepting movement again.
-	if sprite.is_playing() and sprite.animation.begins_with("attack"):
-		body.velocity = Vector2.ZERO
-		body.move_and_slide()
-		return
 
 	if is_attacking:
 		body.velocity = Vector2.ZERO

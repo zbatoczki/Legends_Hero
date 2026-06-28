@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BowAction" format=3 uid="uid://b8bowaction01"]
+
+[ext_resource type="Script" uid="uid://bquyvx0vg3syh" path="res://resources/actions/bow_action.gd" id="1_bow"]
+[ext_resource type="PackedScene" uid="uid://b8arrowproj01" path="res://scenes/projectile/arrow/arrow.tscn" id="2_arrow"]
+
+[resource]
+script = ExtResource("1_bow")
+arrow_scene = ExtResource("2_arrow")
+arrow_speed = 150.0

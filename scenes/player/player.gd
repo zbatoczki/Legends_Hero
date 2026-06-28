@@ -3,22 +3,118 @@ class_name Player extends CharacterBody2D
 @onready var input_component: InputComponent = %InputComponent
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var sword_swing_player: AudioStreamPlayer = $SwordSwing
-@onready var sword_hitbox: Area2D = $DamageComponent
+@onready var sword_hitbox: Area2D = $SwordHitBox
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var spawn_point: Marker2D = %ProjectileSpawnPoint
+@onready var spawn_pivot: Node2D = $ProjectileSpawnPivot
 @export var sword_swing_tracks: Array[AudioStreamOggVorbis] = []
+
+## Items equipped to action slots A and B. Assigned by the inventory screen;
+## may be null when a slot is empty.
+@export var action_a: ItemResource
+@export var action_b: ItemResource
+
+
+## Cardinal direction the player is currently facing.
+var facing_direction: Vector2:
+	get: return movement_component.last_direction
+
+func _ready() -> void:
+	InputEventBus.action_a_triggered.connect(execute_action_a)
+	InputEventBus.action_b_triggered.connect(execute_action_b)
+
 
 func _physics_process(delta: float) -> void:
 	input_component.update()
 	movement_component.direction = input_component.move_direction
 	movement_component.is_blocking = input_component.is_blocking
 	movement_component.is_attacking = input_component.is_attacking
-	sword_hitbox.rotation = Vector2.UP.angle_to(movement_component.last_direction)
+	var angle_to = Vector2.UP.angle_to(movement_component.last_direction)
+	sword_hitbox.rotation = angle_to
+	spawn_pivot.rotation = angle_to
 	if(input_component.is_attacking):
 		swing_sword()
 	movement_component.tick(delta)
+
+
+func execute_action_a() -> void:
+	use_action(action_a)
+
+
+func execute_action_b() -> void:
+	use_action(action_b)
+
+
+# Earliest time (in seconds) each equipped item may be used again.
+var _action_ready_at: Dictionary[ItemResource, float] = {}
+
+# Runs an equipped item's action. No-op when the slot is empty, the item has no
+# action assigned, the action can't run (e.g. no ammo), or it's still cooling
+# down. The bow additionally only fires when its draw isn't already playing.
+func use_action(item: ItemResource) -> void:
+	if item == null or item.action == null:
+		return
+	if not item.action.can_execute(self):
+		return
+	if _on_cooldown(item):
+		return
+	if item.name == "Bow":
+		if _is_drawing_bow():
+			return
+		fire_bow(item.action)
+	else:
+		item.action.execute(self)
+	_start_cooldown(item)
+
+
+func _is_drawing_bow() -> bool:
+	return animated_sprite_2d.is_playing() and animated_sprite_2d.animation.begins_with("bow")
+
+
+func _on_cooldown(item: ItemResource) -> bool:
+	return _action_ready_at.get(item, 0.0) > _now_seconds()
+
+
+func _start_cooldown(item: ItemResource) -> void:
+	if item.action.cooldown > 0.0:
+		_action_ready_at[item] = _now_seconds() + item.action.cooldown
+
+
+func _now_seconds() -> float:
+	return Time.get_ticks_msec() / 1000.0
+
+
+# Plays the bow draw and looses the arrow on the animation's release (final)
+# frame, so the shot syncs with the draw instead of firing at the start. The
+# shot is cancelled if the animation is interrupted (e.g. the player is hit).
+func fire_bow(action: ActionResource) -> void:
+	var animation := "bow_" + Helpers.get_direction_suffix(facing_direction)
+	animated_sprite_2d.play(animation)
+	var release_frame := animated_sprite_2d.sprite_frames.get_frame_count(animation) - 1
+	while animated_sprite_2d.animation == animation and animated_sprite_2d.frame < release_frame:
+		await animated_sprite_2d.frame_changed
+	if animated_sprite_2d.animation == animation:
+		action.execute(self)
+
+
+# Spawns a projectile travelling in the player's facing direction. Used by ranged
+# actions like the bow.
+func fire_projectile(scene: PackedScene, speed: float) -> void:
+	var projectile := scene.instantiate() as Projectile
+	projectile.direction = facing_direction
+	projectile.speed = speed
+	get_parent().add_child(projectile)
+	projectile.global_position = spawn_point.global_position
+
+
+# Drops a scene at the player's position (e.g. a bomb). Returns the instance.
+func place_object(scene: PackedScene) -> Node2D:
+	var object := scene.instantiate() as Node2D
+	get_parent().add_child(object)
+	object.global_position = global_position
+	return object
 
 
 func swing_sword() -> void:
@@ -28,7 +124,6 @@ func swing_sword() -> void:
 	sword_hitbox.monitoring = false
 
 func play_sword_swing_sound() -> void:
-	sword_swing_player.stream = sword_swing_tracks.pick_random()
 	sword_swing_player.play()
 	
 
@@ -55,12 +150,12 @@ func _on_health_component_died() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	handle_damage(area)
 	
-func handle_damage(body: Node2D) -> void:
+func handle_damage(body: Node2D, damage_amount: int = 1) -> void:
 	if input_component.is_blocking: return
 	var knockback_direction = (global_position - body.global_position).normalized()
 	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
 	SoundEffectsPlayer.play_damaged_sound()
-	health_component.damage(1)
+	health_component.damage(damage_amount)
 
 
 func _on_damaged() -> void:

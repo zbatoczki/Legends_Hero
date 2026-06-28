@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b8arrowproj01"]
+
+[ext_resource type="Script" uid="uid://cynlg01m653q6" path="res://scenes/projectile/base/projectile.gd" id="1_arrow"]
+[ext_resource type="Texture2D" uid="uid://bv241t6us7jb1" path="res://assets/items/arrow_weapon.png" id="2_bi0ov"]
+[ext_resource type="AudioStream" uid="uid://cxnkn2scawu4p" path="res://assets/audio/sfx/arrow.ogg" id="3_vbl06"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceuix"]
+atlas = ExtResource("2_bi0ov")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arrow"]
+radius = 2.0
+height = 8.0
+
+[node name="Arrow" type="Area2D" unique_id=832117903]
+z_index = 3
+collision_layer = 128
+collision_mask = 6
+script = ExtResource("1_arrow")
+orient_to_direction = true
+orient_offset_degrees = 90.0
+damage = 1
+target_group = "Enemy"
+knockback_force = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1361830983]
+texture = SubResource("AtlasTexture_ceuix")
+offset = Vector2(-0.5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978991606]
+shape = SubResource("CapsuleShape2D_arrow")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=283112509]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1949744993]
+stream = ExtResource("3_vbl06")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

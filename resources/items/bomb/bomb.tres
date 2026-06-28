@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://cb5nvebi8rjrx"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://cb5nvebi8rjrx"]
 
 [ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_cbe5l"]
 [ext_resource type="Shape2D" uid="uid://dbnitb5rppk4m" path="res://resources/items/bomb/bomb_collision_shape.tres" id="1_t5fqa"]
 [ext_resource type="AudioStream" uid="uid://16rxhvmxqien" path="res://assets/audio/sfx/item.wav" id="3_drtnm"]
 [ext_resource type="Texture2D" uid="uid://dj87n47tgc5hy" path="res://assets/items/bomb_mini.png" id="4_kv00b"]
+[ext_resource type="Resource" uid="uid://b8bombaction01" path="res://resources/actions/bomb_action.tres" id="5_bomb"]
 
 [resource]
 script = ExtResource("1_cbe5l")
@@ -14,4 +15,5 @@ sound_effect = ExtResource("3_drtnm")
 max_stacks = 99
 equipable = true
 in_hud = true
+action = ExtResource("5_bomb")
 metadata/_custom_type_script = "uid://dn4phn21ekk0y"
