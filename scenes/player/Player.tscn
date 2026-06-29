@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://yx6oncn7yek0" path="res://assets/player/attack_sprites/bow/bow_left.png" id="20_76i7i"]
 [ext_resource type="Texture2D" uid="uid://b1je388nruvgn" path="res://assets/player/attack_sprites/bow/bow_right.png" id="21_mndc6"]
 [ext_resource type="Texture2D" uid="uid://dlac7ovdagxr6" path="res://assets/player/attack_sprites/bow/bow_up.png" id="22_1hh02"]
+[ext_resource type="PackedScene" uid="uid://bi7wq3vbojomu" path="res://scenes/components/interact_component.tscn" id="27_76i7i"]
 [ext_resource type="Resource" uid="uid://b8bowitem01" path="res://resources/items/bow/bow.tres" id="100_bow"]
 [ext_resource type="Resource" uid="uid://cb5nvebi8rjrx" path="res://resources/items/bomb/bomb.tres" id="101_bomb"]
 
@@ -444,6 +445,9 @@ debug_color = Color(0.8235294, 0.37254903, 0.38039216, 0.21176471)
 [node name="ProjectileSpawnPoint" type="Marker2D" parent="ProjectileSpawnPivot" unique_id=741913180]
 unique_name_in_owner = true
 position = Vector2(0, -13)
+
+[node name="InteractComponent" parent="." unique_id=756562964 instance=ExtResource("27_76i7i")]
+target_position = Vector2(0, -10)
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

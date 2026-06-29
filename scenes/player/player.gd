@@ -9,6 +9,7 @@ class_name Player extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var spawn_point: Marker2D = %ProjectileSpawnPoint
 @onready var spawn_pivot: Node2D = $ProjectileSpawnPivot
+@onready var interact_component: RayCast2D = $InteractComponent
 @export var sword_swing_tracks: Array[AudioStreamOggVorbis] = []
 
 ## Items equipped to action slots A and B. Assigned by the inventory screen;
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	var angle_to = Vector2.UP.angle_to(movement_component.last_direction)
 	sword_hitbox.rotation = angle_to
 	spawn_pivot.rotation = angle_to
+	interact_component.rotation = angle_to
 	if(input_component.is_attacking):
 		swing_sword()
 	movement_component.tick(delta)

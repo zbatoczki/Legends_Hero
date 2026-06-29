@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bi7wq3vbojomu"]
+
+[ext_resource type="Script" uid="uid://bknx7v57s6k6s" path="res://scenes/components/interact_component.gd" id="1_pab14"]
+
+[node name="InteractComponent" type="RayCast2D" unique_id=756562964]
+self_modulate = Color(14.384704, 18.892157, 0, 1)
+target_position = Vector2(0, -14)
+collision_mask = 16
+collide_with_areas = true
+script = ExtResource("1_pab14")

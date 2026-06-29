@@ -1,6 +1,6 @@
 class_name ItemResource extends Resource
 
-var stacks := 1
+
 
 @export var name: String
 ## Optional. Will override animated texture if provedied, required if animated texture not provided
@@ -9,6 +9,7 @@ var stacks := 1
 @export var animated_texture: SpriteFrames
 @export var collision_shape: Shape2D
 @export var sound_effect: AudioStream
+@export var stacks := 1
 @export var max_stacks: int
 @export var price: int
 @export var equipable: bool = false

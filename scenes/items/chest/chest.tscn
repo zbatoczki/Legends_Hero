@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dvbo1gteubxrx"]
+
+[ext_resource type="Script" uid="uid://dm6tow5irxu8v" path="res://scenes/items/chest/chest.gd" id="1_a2apx"]
+[ext_resource type="Texture2D" uid="uid://iy7jf61kt3ap" path="res://assets/items/chests/tileCaveTreasureChest.png" id="2_3ceks"]
+[ext_resource type="AudioStream" uid="uid://kb8adks2tf12" path="res://assets/audio/sfx/success.wav" id="4_4ukne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cii4s"]
+size = Vector2(16, 16)
+
+[node name="Chest" type="StaticBody2D" unique_id=363248655]
+collision_layer = 24
+collision_mask = 0
+script = ExtResource("1_a2apx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100161972]
+shape = SubResource("RectangleShape2D_cii4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=905033178]
+texture = ExtResource("2_3ceks")
+hframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="ItemEndPosition" type="Marker2D" parent="." unique_id=194070926]
+position = Vector2(0, -13)
+gizmo_extents = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=723902961]
+stream = ExtResource("4_4ukne")
+bus = &"SFX"

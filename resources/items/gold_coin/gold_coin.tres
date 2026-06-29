@@ -7,12 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://byqbmyv70hqaw" path="res://assets/audio/sfx/coin.wav" id="4_re83i"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_bjp6u")
 name = "Gold Coin"
 static_texture = ExtResource("4_le45y")
 animated_texture = ExtResource("1_wclbf")
 collision_shape = ExtResource("2_re83i")
 sound_effect = ExtResource("4_re83i")
+stacks = 10
 max_stacks = 999
 in_hud = true
 metadata/_custom_type_script = "uid://dn4phn21ekk0y"
