@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://gryu33hl1mx4" path="res://scripts/movement_component.gd" id="3_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://dwlunda0x4ynr" path="res://assets/player/attack_sprites/attack_up.png" id="4_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://cre01lrk0v46" path="res://assets/player/block_sprites/shield_block_down.png" id="5_8qjgm"]
+[ext_resource type="Resource" uid="uid://iyygd10q4oxw" path="res://resources/items/boomerang/boomerang.tres" id="5_x3qp0"]
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="6_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://ct80bwopsbqnf" path="res://assets/player/block_sprites/shield_block_left.png" id="6_ejd4k"]
 [ext_resource type="Texture2D" uid="uid://c3yd6usyyiit7" path="res://assets/player/block_sprites/shield_block_right.png" id="7_2xrq6"]
@@ -382,6 +383,7 @@ script = ExtResource("1_ov1oi")
 sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps")])
 action_a = ExtResource("100_bow")
 action_b = ExtResource("101_bomb")
+action_c = ExtResource("5_x3qp0")
 
 [node name="InputComponent" type="Node" parent="." unique_id=197525737]
 unique_name_in_owner = true

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BoomerangAction" format=3 uid="uid://dhct4rjsori1g"]
+
+[ext_resource type="PackedScene" uid="uid://qq6avkx7a2ai" path="res://scenes/items/boomerang/boomerang.tscn" id="1_2h7l0"]
+[ext_resource type="Script" uid="uid://dfibk5l7pmssm" path="res://resources/actions/boomerang_action.gd" id="1_k18gs"]
+
+[resource]
+script = ExtResource("1_k18gs")
+boomerang_scene = ExtResource("1_2h7l0")
+metadata/_custom_type_script = "uid://dfibk5l7pmssm"

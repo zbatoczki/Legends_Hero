@@ -4,6 +4,7 @@ extends Node
 signal inventory_toggled
 signal action_a_triggered
 signal action_b_triggered
+signal action_c_triggered
 
 
 func emit_inventory_toggled() -> void:
@@ -17,3 +18,7 @@ func emit_action_a_triggered() -> void:
 
 func emit_action_b_triggered() -> void:
 	action_b_triggered.emit()
+
+
+func emit_action_c_triggered() -> void:
+	action_c_triggered.emit()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://iyygd10q4oxw"]
+
+[ext_resource type="Resource" uid="uid://dhct4rjsori1g" path="res://resources/actions/boomerang_action.tres" id="1_lhy8h"]
+[ext_resource type="Script" uid="uid://dn4phn21ekk0y" path="res://resources/items/item_resource.gd" id="1_pu4jd"]
+[ext_resource type="Texture2D" uid="uid://bbm5yk8sk0anu" path="res://assets/items/boomerang.png" id="3_n7our"]
+
+[resource]
+script = ExtResource("1_pu4jd")
+name = "Boomerang"
+static_texture = ExtResource("3_n7our")
+max_stacks = 1
+equipable = true
+in_hud = true
+action = ExtResource("1_lhy8h")
+metadata/_custom_type_script = "uid://dn4phn21ekk0y"

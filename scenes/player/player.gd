@@ -15,7 +15,9 @@ class_name Player extends CharacterBody2D
 ## may be null when a slot is empty.
 @export var action_a: ItemResource
 @export var action_b: ItemResource
+@export var action_c: ItemResource
 
+var boomerang_thrown := false
 
 ## Cardinal direction the player is currently facing.
 var facing_direction: Vector2:
@@ -24,6 +26,7 @@ var facing_direction: Vector2:
 func _ready() -> void:
 	InputEventBus.action_a_triggered.connect(execute_action_a)
 	InputEventBus.action_b_triggered.connect(execute_action_b)
+	InputEventBus.action_c_triggered.connect(execute_action_c)
 
 
 func _physics_process(delta: float) -> void:
@@ -46,6 +49,9 @@ func execute_action_a() -> void:
 func execute_action_b() -> void:
 	use_action(action_b)
 
+func execute_action_c() -> void:
+	use_action(action_c)
+	boomerang_thrown = true
 
 # Earliest time (in seconds) each equipped item may be used again.
 var _action_ready_at: Dictionary[ItemResource, float] = {}
@@ -56,10 +62,13 @@ var _action_ready_at: Dictionary[ItemResource, float] = {}
 func use_action(item: ItemResource) -> void:
 	if item == null or item.action == null:
 		return
+		
 	if not item.action.can_execute(self):
 		return
+		
 	if _on_cooldown(item):
 		return
+		
 	if item.name == "Bow":
 		if _is_drawing_bow():
 			return

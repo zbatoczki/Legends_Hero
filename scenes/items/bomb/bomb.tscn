@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://d0bbwws4v0tkg" path="res://scripts/shaders/white_flash.gdshader" id="2_ed7j5"]
 [ext_resource type="Texture2D" uid="uid://dc2rvsklcs1mh" path="res://assets/items/bomb_explosion.png" id="3_eu2tw"]
 [ext_resource type="AudioStream" uid="uid://b0436k6q7jnd7" path="res://assets/audio/sfx/damage_big_1.ogg" id="4_dx125"]
+[ext_resource type="Texture2D" uid="uid://0wrv4s2in6ly" path="res://assets/items/bomb_red.png" id="5_o1wx8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o1wx8"]
 resource_local_to_scene = true
@@ -44,6 +45,14 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("3_eu2tw")
 region = Rect2(160, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbsou"]
+atlas = ExtResource("5_o1wx8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rdsn"]
+atlas = ExtResource("5_o1wx8")
+region = Rect2(16, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cii4s"]
 animations = [{
 "frames": [{
@@ -79,6 +88,17 @@ animations = [{
 "loop": 0,
 "name": &"explosion",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbsou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rdsn")
+}],
+"loop": 1,
+"name": &"red",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blast"]
@@ -91,7 +111,8 @@ script = ExtResource("1_bomb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1129610820]
 material = SubResource("ShaderMaterial_o1wx8")
 sprite_frames = SubResource("SpriteFrames_cii4s")
-autoplay = "default"
+animation = &"red"
+autoplay = "red"
 
 [node name="Fuse" type="Timer" parent="." unique_id=872815076]
 wait_time = 3.0

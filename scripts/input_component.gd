@@ -14,3 +14,8 @@ func update() -> void:
 		InputEventBus.emit_action_a_triggered()
 	if Input.is_action_just_pressed("execute_action_b"):
 		InputEventBus.emit_action_b_triggered()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("execute_action_c"):
+		InputEventBus.emit_action_c_triggered()

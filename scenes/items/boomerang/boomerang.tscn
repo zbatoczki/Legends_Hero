@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://qq6avkx7a2ai"]
+
+[ext_resource type="Texture2D" uid="uid://d4fvhogyrv4ar" path="res://assets/items/boomerang_weapon.png" id="1_4honr"]
+[ext_resource type="Script" uid="uid://b880vaqa3gb0c" path="res://scenes/items/boomerang/boomerang.gd" id="1_hqunl"]
+[ext_resource type="AudioStream" uid="uid://bj3xopgyjvwyj" path="res://assets/audio/sfx/sword_swing_1_b.ogg" id="3_frkcl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqunl"]
+atlas = ExtResource("1_4honr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frkcl"]
+atlas = ExtResource("1_4honr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwv3o"]
+atlas = ExtResource("1_4honr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cii4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqunl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frkcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwv3o")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cii4s"]
+radius = 5.0
+
+[node name="Boomerang" type="Area2D" unique_id=982465366]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_hqunl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1366184927]
+sprite_frames = SubResource("SpriteFrames_cii4s")
+autoplay = "default"
+frame_progress = 0.18223177
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=457727094]
+shape = SubResource("CircleShape2D_cii4s")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=183645688]
+stream = ExtResource("3_frkcl")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
