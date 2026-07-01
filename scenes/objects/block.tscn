@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cii4s"]
 size = Vector2(16, 16)
 
-[node name="Block" type="StaticBody2D" unique_id=693907656]
+[node name="Block" type="AnimatableBody2D" unique_id=693907656]
 collision_layer = 8
 collision_mask = 12
+sync_to_physics = false
 script = ExtResource("1_mahf3")
 move_speed = 60.0
 

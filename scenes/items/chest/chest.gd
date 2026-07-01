@@ -14,7 +14,8 @@ func _ready() -> void:
 	if item == null:
 		push_warning("No item was assigned to the chest.")
 	visible = _is_visible
-
+	if not _is_visible:
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func can_interact() -> bool:
 	return not _is_open
@@ -46,6 +47,14 @@ func spawn_item() -> void:
 
 
 func on_triggered() -> void:
+	if _is_visible: return
+	process_mode = Node.PROCESS_MODE_INHERIT
 	_is_visible = true
 	visible = _is_visible
 	SoundEffectsPlayer.play_mystery_sound()
+	
+func on_released() -> void:
+	if _is_open: return
+	_is_visible = false
+	visible = _is_visible
+	process_mode = Node.PROCESS_MODE_DISABLED
