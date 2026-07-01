@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://imjqi2tbrx8j" path="res://assets/audio/sfx/game_over.wav" id="3_huc7s"]
 [ext_resource type="AudioStream" uid="uid://c0irk36ucfhbg" path="res://assets/audio/music/dungeon.ogg" id="4_c62p3"]
 [ext_resource type="AudioStream" uid="uid://byqbmyv70hqaw" path="res://assets/audio/sfx/coin.wav" id="5_bghjv"]
+[ext_resource type="AudioStream" uid="uid://dfv71iiy6xjfe" path="res://assets/audio/sfx/mystery.wav" id="6_s1kcr"]
 
 [node name="SoundEffectsPlayer" type="Node" unique_id=301109113]
 script = ExtResource("1_uhgci")
@@ -23,4 +24,8 @@ bus = &"Music"
 
 [node name="ItemSound" type="AudioStreamPlayer" parent="." unique_id=1065634009]
 stream = ExtResource("5_bghjv")
+bus = &"SFX"
+
+[node name="MysterySound" type="AudioStreamPlayer" parent="." unique_id=442165435]
+stream = ExtResource("6_s1kcr")
 bus = &"SFX"

@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://l5x3prwpjwd"]
 
 [ext_resource type="Texture2D" uid="uid://cexn14l1kptxj" path="res://assets/tileset/base_tileset.png" id="1_crbl6"]
+[ext_resource type="PackedScene" uid="uid://csu8vj7hbn6js" path="res://scenes/objects/block.tscn" id="2_28ekt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28ekt"]
 texture = ExtResource("1_crbl6")
@@ -124,6 +125,9 @@ texture = ExtResource("1_crbl6")
 20:8/0 = 0
 20:7/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dfomv"]
+scenes/1/scene = ExtResource("2_28ekt")
+
 [resource]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
@@ -135,3 +139,4 @@ terrain_set_0/terrain_1/color = Color(1, 0.2784314, 0.02745098, 1)
 custom_data_layer_0/name = "is_pitfall"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_28ekt")
+sources/1 = SubResource("TileSetScenesCollectionSource_dfomv")

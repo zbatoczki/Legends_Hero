@@ -18,7 +18,18 @@ class_name Player extends CharacterBody2D
 @export var action_b: ItemResource
 @export var action_c: ItemResource
 
+## Seconds the player must lean into a block before it slides one tile.
+@export var push_delay: float = 0.25
+
 var boomerang_thrown := false
+
+# The block currently being pushed and how long we've been pushing it, so a
+# block only slides after the player leans into it for `push_delay`.
+var _push_block: PushableBlock = null
+var _push_timer: float = 0.0
+# Whether the player was leaning into a block last frame; drives the push
+# animation. Detected after move_and_slide, so it feeds the sprite one frame later.
+var _is_pushing: bool = false
 
 ## Cardinal direction the player is currently facing.
 var facing_direction: Vector2:
@@ -35,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	movement_component.direction = input_component.move_direction
 	movement_component.is_blocking = input_component.is_blocking
 	movement_component.is_attacking = input_component.is_attacking
+	movement_component.is_pushing = _is_pushing
 	var angle_to = Vector2.UP.angle_to(movement_component.last_direction)
 	sword_hitbox.rotation = angle_to
 	spawn_pivot.rotation = angle_to
@@ -42,6 +54,39 @@ func _physics_process(delta: float) -> void:
 	if(input_component.is_attacking):
 		swing_sword()
 	movement_component.tick(delta)
+	_handle_push(delta)
+
+
+# Slides a pushable block one tile once the player has leaned into it for
+# `push_delay`.
+func _handle_push(delta: float) -> void:
+	var block := _pushed_block()
+	_is_pushing = block != null
+	if block == null:
+		_push_block = null
+		_push_timer = 0.0
+		return
+
+	if block != _push_block:
+		_push_block = block
+		_push_timer = 0.0
+
+	_push_timer += delta
+	if _push_timer >= push_delay and block.try_push(Vector2i(facing_direction)):
+		_push_timer = 0.0
+
+
+# Gets the block the player is pushing, null otherwise
+# Requires the player to be moving and directly moving into a block face
+func _pushed_block() -> PushableBlock:
+	if input_component.move_direction == Vector2.ZERO:
+		return null
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider is PushableBlock and collision.get_normal().dot(facing_direction) < -0.5:
+			return collider as PushableBlock
+	return null
 
 
 func execute_action_a() -> void:

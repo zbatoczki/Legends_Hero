@@ -10,6 +10,7 @@ var direction : Vector2 = Vector2.ZERO
 var last_direction : Vector2 = Vector2.UP
 var is_blocking: bool = false
 var is_attacking: bool = false
+var is_pushing: bool = false
 
 func tick(delta: float) -> void:
 	if body == null: return
@@ -47,7 +48,12 @@ func set_attack_sprite() -> void:
 	sprite.play("attack_" + Helpers.get_direction_suffix(last_direction))
 
 func set_walking_sprite() -> void:
-	var prefix := "block" if is_blocking else "walk"
+	# Pushing a block takes visual priority over the shield-block stance.
+	var prefix := "walk"
+	if is_pushing:
+		prefix = "push"
+	elif is_blocking:
+		prefix = "block"
 	var anim := prefix + "_" + Helpers.get_direction_suffix(last_direction)
 
 	if direction == Vector2.ZERO:

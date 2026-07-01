@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var speed: float = 150.0
-@export var range: float = 250.0
+@export var travel_range: float = 250.0
 @export var damage: int = 1
 
 
@@ -25,10 +25,8 @@ func _physics_process(delta: float) -> void:
 		var last_position = global_position
 		global_position += _direction_to_travel * speed * delta
 		_distance_traveled += last_position.distance_squared_to(global_position)
-		if(_distance_traveled >= range):
+		if _distance_traveled >= travel_range:
 			_is_returning = true
-			monitorable = false
-			monitoring = false
 	elif global_position.distance_squared_to(player.global_position) > 10:
 		_direction_to_travel = global_position.direction_to(player.global_position)
 		global_position += _direction_to_travel * speed * delta

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b8ruprih27c4w"]
+
+[ext_resource type="Script" uid="uid://cukp3dlaamwdn" path="res://scenes/components/trigger.gd" id="1_yx5sb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_as2t8"]
+radius = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cii4s"]
+size = Vector2(2, 2)
+
+[node name="Trigger" type="Area2D" unique_id=87545281]
+collision_layer = 0
+script = ExtResource("1_yx5sb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2087126700]
+shape = SubResource("CircleShape2D_as2t8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1361056342]
+texture = SubResource("PlaceholderTexture2D_cii4s")

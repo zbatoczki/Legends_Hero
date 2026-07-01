@@ -5,5 +5,9 @@ func can_interact() -> bool:
 	return false
 
 
-func interact(player: Player) -> void:
+func interact(_player: Player) -> void:
+	pass
+
+
+func on_triggered() -> void:
 	pass

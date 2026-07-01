@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://yx6oncn7yek0" path="res://assets/player/attack_sprites/bow/bow_left.png" id="20_76i7i"]
 [ext_resource type="Texture2D" uid="uid://b1je388nruvgn" path="res://assets/player/attack_sprites/bow/bow_right.png" id="21_mndc6"]
 [ext_resource type="Texture2D" uid="uid://dlac7ovdagxr6" path="res://assets/player/attack_sprites/bow/bow_up.png" id="22_1hh02"]
+[ext_resource type="Texture2D" uid="uid://dxmlluxeolvcb" path="res://assets/player/push/push_down.png" id="23_geaob"]
+[ext_resource type="Texture2D" uid="uid://bpyb7fn4rutsy" path="res://assets/player/push/push_left.png" id="24_qsmrd"]
+[ext_resource type="Texture2D" uid="uid://cb52enbrtvibc" path="res://assets/player/push/push_right.png" id="25_jtlb7"]
+[ext_resource type="Texture2D" uid="uid://bv4k8qaxejemv" path="res://assets/player/push/push_up.png" id="26_ye1dr"]
 [ext_resource type="PackedScene" uid="uid://bi7wq3vbojomu" path="res://scenes/components/interact_component.tscn" id="27_76i7i"]
 [ext_resource type="Resource" uid="uid://b8bowitem01" path="res://resources/items/bow/bow.tres" id="100_bow"]
 [ext_resource type="Resource" uid="uid://cb5nvebi8rjrx" path="res://resources/items/bomb/bomb.tres" id="101_bomb"]
@@ -143,6 +147,38 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_use2k"]
 atlas = ExtResource("22_1hh02")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7647m"]
+atlas = ExtResource("23_geaob")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qillh"]
+atlas = ExtResource("23_geaob")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6dsj"]
+atlas = ExtResource("24_qsmrd")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8twg"]
+atlas = ExtResource("24_qsmrd")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijqjm"]
+atlas = ExtResource("25_jtlb7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2357c"]
+atlas = ExtResource("25_jtlb7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duftu"]
+atlas = ExtResource("26_ye1dr")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5re5"]
+atlas = ExtResource("26_ye1dr")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4eru"]
@@ -325,6 +361,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7647m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qillh")
+}],
+"loop": 1,
+"name": &"push_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6dsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8twg")
+}],
+"loop": 1,
+"name": &"push_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijqjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2357c")
+}],
+"loop": 1,
+"name": &"push_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duftu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5re5")
+}],
+"loop": 1,
+"name": &"push_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q4eru")
 }, {
 "duration": 1.0,
@@ -385,6 +465,7 @@ sword_swing_tracks = Array[AudioStreamOggVorbis]([ExtResource("2_pi3ps")])
 action_a = ExtResource("100_bow")
 action_b = ExtResource("101_bomb")
 action_c = ExtResource("5_x3qp0")
+push_delay = 0.75
 
 [node name="InputComponent" type="Node" parent="." unique_id=197525737]
 unique_name_in_owner = true
@@ -411,7 +492,9 @@ metadata/_custom_type_script = "uid://o7njoolsg54g"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1283073682]
 material = SubResource("ShaderMaterial_kswpp")
 sprite_frames = SubResource("SpriteFrames_cii4s")
-animation = &"bow_up"
+animation = &"push_down"
+frame = 1
+frame_progress = 0.6528414
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901547094]
 position = Vector2(0, 2)

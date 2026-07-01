@@ -1,6 +1,7 @@
 extends Interactable
 
 @export var item: ItemResource
+@export var _is_visible := true
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var item_end_position: Vector2 = $ItemEndPosition.global_position
@@ -12,12 +13,14 @@ func _ready() -> void:
 	sprite_2d.frame = 0
 	if item == null:
 		push_warning("No item was assigned to the chest.")
+	visible = _is_visible
 
 
 func can_interact() -> bool:
 	return not _is_open
 
-func interact(player: Player) -> void:
+
+func interact(_player: Player) -> void:
 	if not can_interact(): return
 	sprite_2d.frame = 1
 	sound.play()
@@ -40,3 +43,9 @@ func spawn_item() -> void:
 		item_sprite.queue_free()
 		ItemEventBus.emit_item_picked_up(item)
 		).set_delay(1)
+
+
+func on_triggered() -> void:
+	_is_visible = true
+	visible = _is_visible
+	SoundEffectsPlayer.play_mystery_sound()
