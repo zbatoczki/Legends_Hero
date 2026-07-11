@@ -31,7 +31,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if target_group != "" and body.is_in_group(target_group):
-		_hit(body)
+		# Targets get a chance to swat the projectile away before it deals damage.
+		var deflected: bool = body.has_method("try_deflect_projectile") \
+				and body.try_deflect_projectile(self)
+		if not deflected:
+			_hit(body)
 	queue_free()
 
 

@@ -20,7 +20,7 @@
 radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as2t8"]
-size = Vector2(9, 5)
+size = Vector2(8.5, 12.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cii4s"]
 radius = 7.0
@@ -254,7 +254,8 @@ monitorable = false
 shape = SubResource("CircleShape2D_yd4ck")
 
 [node name="DamageHitbox" type="Area2D" parent="." unique_id=871325412]
-position = Vector2(-4, -12)
+position = Vector2(-1, -11)
+rotation = 1.5707964
 collision_layer = 0
 input_pickable = false
 monitoring = false
@@ -271,23 +272,24 @@ shape = SubResource("CircleShape2D_cii4s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035154666]
 material = SubResource("ShaderMaterial_2sptt")
 sprite_frames = SubResource("SpriteFrames_cii4s")
-animation = &"move_down"
+animation = &"attack_up"
 autoplay = "move_down"
+frame = 2
 
 [node name="AttackLeftPosition" type="Marker2D" parent="." unique_id=199009664]
-position = Vector2(-14, 5)
+position = Vector2(-14, 2)
 gizmo_extents = 2.0
 
 [node name="AttackRightPosition" type="Marker2D" parent="." unique_id=1052017079]
-position = Vector2(14, 5)
+position = Vector2(14, 2)
 gizmo_extents = 2.0
 
 [node name="AttackUpPosition" type="Marker2D" parent="." unique_id=1296392415]
-position = Vector2(-4, -12)
+position = Vector2(-1, -11)
 gizmo_extents = 2.0
 
 [node name="AttackDownPosition" type="Marker2D" parent="." unique_id=1640959850]
-position = Vector2(4, 11)
+position = Vector2(1, 10)
 gizmo_extents = 2.0
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]

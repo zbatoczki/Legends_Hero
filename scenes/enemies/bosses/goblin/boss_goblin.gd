@@ -22,6 +22,7 @@ func _ready() -> void:
 func attack() -> void:
 	if is_stunned():
 		return
+	enemy_movement_component.enable_movement(false)
 	damage_hitbox.monitoring = true
 	#face player
 	var direction_to_face = get_cardinal_direction_to_player()
@@ -32,7 +33,6 @@ func attack() -> void:
 
 
 func _on_player_detection_body_entered(_body: Node2D) -> void:
-	enemy_movement_component.enable_movement(false)
 	attack()
 
 
@@ -42,10 +42,13 @@ func _on_player_detection_body_exited(_body: Node2D) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite_2d.animation.begins_with("attack"):
-		swing_sound.stop()
-		smash_sound.play()
-		damage_hitbox.monitoring = false
+	if not animated_sprite_2d.animation.begins_with("attack"):
+		return
+		
+	swing_sound.stop()
+	smash_sound.play()
+	damage_hitbox.monitoring = false
+	enemy_movement_component.enable_movement(true)
 
 
 func set_damage_hitbox_position(direction: Vector2) -> void:
@@ -55,6 +58,16 @@ func set_damage_hitbox_position(direction: Vector2) -> void:
 
 func _on_damage_hitbox_player_entered(_player: Player) -> void:
 	player.handle_damage(self, 3, 200.0)
+
+
+# Swats player projectiles (arrows, etc.) out of the air with an attack swing.
+# Returning true tells the projectile it dealt no damage; it frees itself.
+# While stunned the boss can't react, so projectiles hit normally.
+func try_deflect_projectile(_projectile: Projectile) -> bool:
+	if is_stunned():
+		return false
+	attack()
+	return true
 
 
 # Cancel whatever the boss was doing; the sprite is paused by StunComponent
