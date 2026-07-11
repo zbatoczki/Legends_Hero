@@ -35,8 +35,6 @@ func spawn_item() -> void:
 	add_child(item_sprite)
 	item_sprite.texture = item.static_texture
 	item_sprite.global_position = global_position
-	print("Chest positons: %v(Global Position) %v(Position)" % [global_position, position])
-	print("sprite positons: %v(Global Position) %v(Position)" % [item_sprite.global_position, item_sprite.position])
 	
 	var tween = create_tween()
 	tween.tween_property(item_sprite, "global_position", item_end_position, 0.5)

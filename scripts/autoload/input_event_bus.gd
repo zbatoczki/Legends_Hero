@@ -8,7 +8,6 @@ signal action_c_triggered
 
 
 func emit_inventory_toggled() -> void:
-	print("inventory toggled")
 	inventory_toggled.emit()
 
 

@@ -205,11 +205,12 @@ func _on_health_component_died() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	handle_damage(area)
-	
-func handle_damage(body: Node2D, damage_amount: int = 1) -> void:
+
+
+func handle_damage(attacker: Node2D, damage_amount: int = 1, knockback_force: float = 100.0, knockback_duration: float = 0.25) -> void:
 	if input_component.is_blocking: return
-	var knockback_direction = (global_position - body.global_position).normalized()
-	knockback_component.apply_knockback(knockback_direction, 100.0, 0.25)
+	var knockback_direction = (global_position - attacker.global_position).normalized()
+	knockback_component.apply_knockback(knockback_direction, knockback_force, knockback_duration)
 	SoundEffectsPlayer.play_damaged_sound()
 	health_component.damage(damage_amount)
 

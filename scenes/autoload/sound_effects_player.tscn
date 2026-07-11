@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c0irk36ucfhbg" path="res://assets/audio/music/dungeon.ogg" id="4_c62p3"]
 [ext_resource type="AudioStream" uid="uid://byqbmyv70hqaw" path="res://assets/audio/sfx/coin.wav" id="5_bghjv"]
 [ext_resource type="AudioStream" uid="uid://dfv71iiy6xjfe" path="res://assets/audio/sfx/mystery.wav" id="6_s1kcr"]
+[ext_resource type="AudioStream" uid="uid://cw263jarn6iwg" path="res://assets/enemies/bosses/boss_noise.ogg" id="7_tr2se"]
 
 [node name="SoundEffectsPlayer" type="Node" unique_id=301109113]
 script = ExtResource("1_uhgci")
@@ -28,4 +29,8 @@ bus = &"SFX"
 
 [node name="MysterySound" type="AudioStreamPlayer" parent="." unique_id=442165435]
 stream = ExtResource("6_s1kcr")
+bus = &"SFX"
+
+[node name="BossDamageSound" type="AudioStreamPlayer" parent="." unique_id=277726233]
+stream = ExtResource("7_tr2se")
 bus = &"SFX"

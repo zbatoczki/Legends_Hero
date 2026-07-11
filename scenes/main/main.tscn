@@ -4,13 +4,10 @@
 [ext_resource type="Script" uid="uid://c687026o6q8ox" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="TileSet" uid="uid://l5x3prwpjwd" path="res://resources/tilesets/enviornment_tileset.tres" id="2_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://6xft1j3hbq1i" path="res://scenes/components/ui/hud.tscn" id="4_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://dvbo1gteubxrx" path="res://scenes/items/chest/chest.tscn" id="8_yyfjg"]
-[ext_resource type="Resource" uid="uid://ci28aspoxqds0" path="res://resources/items/keys/key_boss.tres" id="9_a8run"]
+[ext_resource type="PackedScene" uid="uid://b5uqop586odd8" path="res://scenes/enemies/bosses/goblin/Boss_Goblin.tscn" id="6_yyfjg"]
 [ext_resource type="Resource" uid="uid://cb5nvebi8rjrx" path="res://resources/items/bomb/bomb.tres" id="9_b1x3f"]
 [ext_resource type="Script" uid="uid://c162864g8kfcl" path="res://resources/items/inventory_entry.gd" id="10_inv"]
 [ext_resource type="Resource" uid="uid://u4dmu44hfmrq" path="res://resources/items/arrow/arrow.tres" id="11_arrow"]
-[ext_resource type="PackedScene" uid="uid://csu8vj7hbn6js" path="res://scenes/objects/block.tscn" id="11_ouso4"]
-[ext_resource type="PackedScene" uid="uid://b8ruprih27c4w" path="res://scenes/components/trigger.tscn" id="12_blune"]
 
 [sub_resource type="Resource" id="Resource_inv_arrows"]
 script = ExtResource("10_inv")
@@ -32,6 +29,9 @@ tile_map_data = PackedByteArray("AAAJAAUAAAASAAsAAAAJAAQAAAASAAoAAAAJAAMAAAASAAo
 tile_set = ExtResource("2_l3cfh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1864012356]
+
+[node name="BossGoblin" parent="." unique_id=512566023 instance=ExtResource("6_yyfjg")]
+scale = Vector2(2, 2)
 
 [node name="Player" parent="." unique_id=1757246669 instance=ExtResource("1_hyk8p")]
 z_index = 1
@@ -60,20 +60,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 5
 text = "Reset Scene"
 alignment = 0
-
-[node name="Chest" parent="." unique_id=363248655 instance=ExtResource("8_yyfjg")]
-position = Vector2(-32, -32)
-item = ExtResource("9_a8run")
-_is_visible = false
-
-[node name="Trigger" parent="." unique_id=87545281 node_paths=PackedStringArray("targets") instance=ExtResource("12_blune")]
-position = Vector2(-32, 0)
-input_pickable = false
-monitorable = false
-targets = [NodePath("../Chest")]
-
-[node name="Block" parent="." unique_id=693907656 instance=ExtResource("11_ouso4")]
-position = Vector2(-48, 32)
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
 

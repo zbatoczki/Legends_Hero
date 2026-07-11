@@ -9,11 +9,19 @@ class_name EnemyMovementComponent extends Node
 enum MovementMode { WANDER, TELEPORT, FOLLOW }
 
 @export var body: CharacterBody2D
+@export var animated_sprite: AnimatedSprite2D
+@export var play_direction_animation : bool = true
 
 ## Optional.
 @export var knockback_component: KnockbackComponent
 
+## Optional. While this reports stunned, the body stops moving and retargeting.
+@export var stun_component: StunComponent
+
 @export var movement_mode: MovementMode = MovementMode.WANDER
+
+## Will move movement in intervals, similar to WANDER mode
+@export var break_follow_movement: bool = false
 
 ## When false the component never picks targets on its own; call
 ## go_to_next_position() yourself (e.g. a fire cultist teleporting as it casts).
@@ -33,9 +41,10 @@ enum MovementMode { WANDER, TELEPORT, FOLLOW }
 @export var bounds_margin: float = 8.0
 
 var _retarget_timer: float = 0.0
-var target_position: Vector2
 var _player: Node2D
-
+var _last_direction: Vector2
+var allow_moving: bool = true
+var target_position: Vector2
 
 func _ready() -> void:
 	target_position = body.global_position
@@ -52,16 +61,26 @@ func _physics_process(delta: float) -> void:
 	if knockback_component != null:
 		knockback_component.knockback = Vector2.ZERO
 
-	if movement_mode == MovementMode.FOLLOW:
-		_track_player()
-	elif auto_retarget:
+	if stun_component != null and stun_component.is_stunned():
+		body.velocity = Vector2.ZERO
+		return
+
+	if auto_retarget:
 		_advance_wander(delta)
 
 	# Teleporting bodies already snapped to their target on retarget, so there is
 	# nothing to drive per-frame. The others steer toward the target.
-	if movement_mode != MovementMode.TELEPORT:
+	if allow_moving and movement_mode != MovementMode.TELEPORT:
 		body.velocity = velocity_to_target()
 		body.move_and_slide()
+
+
+func enable_movement(enable: bool) -> void:
+	allow_moving = enable
+	if not allow_moving:
+		body.velocity = Vector2.ZERO
+	else:
+		animated_sprite.play("move_down")
 
 
 func _is_being_knocked_back() -> bool:
@@ -76,31 +95,18 @@ func _advance_wander(delta: float) -> void:
 		go_to_next_position()
 
 
+func _get_player() -> Node2D:
+	if _player == null:
+		_player = get_tree().get_first_node_in_group("Player") as Node2D
+	return _player
+
+
 # Aim at where the player currently is. Keeps the last target if there's no
 # player in the scene yet.
 func _track_player() -> void:
-	var player := _get_player()
+	var player: Node2D = _get_player()
 	if player != null:
 		target_position = _clamp_to_bounds(player.global_position)
-
-
-# Pick a new random point within wander_radius and either head for it or, in
-# teleport mode, snap to it immediately. Safe to call manually.
-func go_to_next_position() -> void:
-	pick_random_position()
-	if movement_mode == MovementMode.TELEPORT:
-		body.global_position = target_position
-	_reset_retarget_timer()
-
-
-func _reset_retarget_timer() -> void:
-	_retarget_timer = randf_range(min_wander_interval, max_wander_interval)
-
-
-func velocity_to_target() -> Vector2:
-	if body.global_position.distance_to(target_position) <= 1.0:
-		return Vector2.ZERO
-	return body.global_position.direction_to(target_position) * speed
 
 
 # Pick a new random point within wander_radius of where we are now.
@@ -111,10 +117,31 @@ func pick_random_position() -> void:
 	))
 
 
-func _get_player() -> Node2D:
-	if _player == null:
-		_player = get_tree().get_first_node_in_group("Player") as Node2D
-	return _player
+# Pick a new random point within wander_radius and either head for it or, in
+# teleport mode, snap to it immediately. Safe to call manually.
+func go_to_next_position() -> void:
+	if movement_mode == MovementMode.FOLLOW:
+		_track_player()
+	else:
+		pick_random_position()
+	if movement_mode == MovementMode.TELEPORT:
+		body.global_position = target_position
+	elif animated_sprite != null and play_direction_animation:
+		var cardinal_direction = Helpers.get_cardinal_direction(_last_direction)
+		var animation_name = "move_" + Helpers.get_direction_suffix(cardinal_direction)
+		animated_sprite.play(animation_name)
+	_reset_retarget_timer()
+
+
+func _reset_retarget_timer() -> void:
+	_retarget_timer = randf_range(min_wander_interval, max_wander_interval)
+
+
+func velocity_to_target() -> Vector2:
+	if body.global_position.distance_to(target_position) <= 1.0:
+		return Vector2.ZERO
+	_last_direction = body.global_position.direction_to(target_position)
+	return _last_direction * speed
 
 
 func _get_bounds_layer() -> TileMapLayer:

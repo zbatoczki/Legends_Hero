@@ -4,9 +4,13 @@ extends Node
 @onready var game_over_sound: AudioStreamPlayer = $GameOverSound
 @onready var item_sound: AudioStreamPlayer = $ItemSound
 @onready var mystery_sound: AudioStreamPlayer = $MysterySound
+@onready var boss_damage_sound: AudioStreamPlayer = $BossDamageSound
 
-func play_damaged_sound() -> void:
-	damage_sound.play()
+func play_damaged_sound(is_boss: bool = false) -> void:
+	if is_boss:
+		boss_damage_sound.play()
+	else:
+		damage_sound.play()
 
 
 func play_game_over_sound() -> void:

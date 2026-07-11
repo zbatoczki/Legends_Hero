@@ -2,7 +2,10 @@ extends Area2D
 
 @export var speed: float = 150.0
 @export var travel_range: float = 250.0
-@export var damage: int = 1
+@export var damage: int = 0
+
+## Seconds the target stays stunned. Only affects enemies with a StunComponent.
+@export var stun_duration: float = 1.0
 
 
 var player: Player
@@ -37,5 +40,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		body.take_damage(1)
+		body.take_damage(damage, stun_duration)
 		_is_returning = true
