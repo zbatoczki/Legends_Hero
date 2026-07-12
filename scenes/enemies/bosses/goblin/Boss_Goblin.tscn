@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://fps8lv1mjndl" path="res://scripts/health_component.gd" id="1_ceqna"]
 [ext_resource type="Texture2D" uid="uid://d2jrx2g1p4sdj" path="res://assets/enemies/bosses/goblin/goblin_attack_down.png" id="1_ns8ad"]
 [ext_resource type="Shader" uid="uid://d0bbwws4v0tkg" path="res://scripts/shaders/white_flash.gdshader" id="2_30ha0"]
+[ext_resource type="PackedScene" uid="uid://diajfq0hm27nf" path="res://scenes/components/boss_death_component.tscn" id="2_ldshj"]
 [ext_resource type="Texture2D" uid="uid://dnxxpsusgll7n" path="res://assets/enemies/bosses/goblin/goblin_attack_left.png" id="2_mnmiq"]
 [ext_resource type="Texture2D" uid="uid://wh8dpasc52id" path="res://assets/enemies/bosses/goblin/goblin_attack_right.png" id="3_ceqna"]
 [ext_resource type="Texture2D" uid="uid://8cvys6guxxnc" path="res://assets/enemies/bosses/goblin/goblin_attack_up.png" id="4_30ha0"]
@@ -217,6 +218,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_2sptt")
+death_effect = ExtResource("2_ldshj")
 
 [node name="EnemyMovementComponent" type="Node" parent="." unique_id=1699120014 node_paths=PackedStringArray("body", "animated_sprite", "stun_component")]
 script = ExtResource("1_30ha0")
@@ -236,6 +238,7 @@ animated_sprite = NodePath("../AnimatedSprite2D")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1888601930]
 script = ExtResource("1_ceqna")
+max_health = 1
 metadata/_custom_type_script = "uid://fps8lv1mjndl"
 
 [node name="SwingSound" type="AudioStreamPlayer" parent="." unique_id=1646882274]

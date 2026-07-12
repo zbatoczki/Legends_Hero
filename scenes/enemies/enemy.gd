@@ -6,7 +6,7 @@ class_name Enemy extends CharacterBody2D
 ## Optional. Enemies without a StunComponent child cannot be stunned.
 @onready var stun_component: StunComponent = get_node_or_null("StunComponent")
 
-const DEATH_COMPONENT: PackedScene = preload("uid://d383uqewghmuh")
+@export var death_effect: PackedScene = preload("uid://d383uqewghmuh")
 
 var player: Player
 
@@ -46,7 +46,7 @@ func _on_damaged() -> void:
 
 func _on_died() -> void:
 	collision_layer = 0
-	var death_scene_instance = DEATH_COMPONENT.instantiate()
+	var death_scene_instance = death_effect.instantiate()
 	death_scene_instance.global_position = global_position
 	get_parent().add_child(death_scene_instance)
 	queue_free()

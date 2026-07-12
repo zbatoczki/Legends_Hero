@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://diajfq0hm27nf"]
+
+[ext_resource type="Script" uid="uid://6o48p45rap2g" path="res://scenes/components/boss_death_component.gd" id="1_q6y72"]
+
+[node name="BossDeathComponent" type="Node2D" unique_id=836649469]
+script = ExtResource("1_q6y72")
+explosion_count = 10
+radius = 15.0
