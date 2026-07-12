@@ -82,3 +82,19 @@ func _on_stun_ended() -> void:
 		attack()
 	else:
 		enemy_movement_component.enable_movement(true)
+		
+func _on_died() -> void:
+	collision_layer = 0
+	process_mode = Node.PROCESS_MODE_DISABLED
+	_flash_until_freed()
+	await get_tree().create_timer(2).timeout
+	var death_scene_instance: BossDeathComponent = death_effect.instantiate()
+	death_scene_instance.global_position = global_position
+	get_parent().add_child(death_scene_instance)
+	death_scene_instance.boss_death_complate.connect(func(): queue_free())
+
+
+func _flash_until_freed() -> void:
+	while not is_queued_for_deletion():
+		await play_damage_flash()          # 0.1s white, then back to normal
+		await get_tree().create_timer(0.05).timeout  # 0.1s gap between flashes

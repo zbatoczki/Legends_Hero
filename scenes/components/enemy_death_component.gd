@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+class_name EnemyExplosion extends AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 

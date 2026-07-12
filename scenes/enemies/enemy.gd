@@ -37,6 +37,10 @@ func is_stunned() -> bool:
 
 
 func _on_damaged() -> void:
+	play_damage_flash()
+
+
+func play_damage_flash() -> void:
 	if animated_sprite_2d == null or animated_sprite_2d.material == null: 
 		return
 	animated_sprite_2d.material.set_shader_parameter("amount", 1.0)
