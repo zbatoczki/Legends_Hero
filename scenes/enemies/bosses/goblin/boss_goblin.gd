@@ -91,7 +91,7 @@ func _on_died() -> void:
 	var death_scene_instance: BossDeathComponent = death_effect.instantiate()
 	death_scene_instance.global_position = global_position
 	get_parent().add_child(death_scene_instance)
-	death_scene_instance.boss_death_complate.connect(func(): queue_free())
+	death_scene_instance.boss_death_complete.connect(func(): queue_free())
 
 
 func _flash_until_freed() -> void:

@@ -131,6 +131,7 @@ interact={
 2d_physics/layer_7="EnemyProjectile"
 2d_physics/layer_8="PlayerProjectile"
 2d_physics/layer_9="Item"
+2d_physics/layer_10="Doorway"
 
 [physics]
 
