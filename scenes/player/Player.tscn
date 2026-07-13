@@ -532,6 +532,12 @@ position = Vector2(0, -13)
 [node name="InteractComponent" parent="." unique_id=756562964 instance=ExtResource("27_76i7i")]
 target_position = Vector2(0, -10)
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=261624262]
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="body_entered" from="SwordHitBox" to="." method="_on_damage_component_body_entered"]

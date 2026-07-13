@@ -196,15 +196,20 @@ texture = ExtResource("1_crbl6")
 29:3/0 = 0
 31:3/0 = 0
 31:4/0 = 0
+31:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 30:4/0 = 0
+30:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 30:5/0 = 0
+30:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 31:5/0 = 0
 29:5/0 = 0
 30:3/0 = 0
+30:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 28:6/0 = 0
 28:7/0 = 0
 29:7/0 = 0
 29:6/0 = 0
+0:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dfomv"]
 scenes/1/scene = ExtResource("2_28ekt")

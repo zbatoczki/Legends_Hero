@@ -11,6 +11,7 @@ class_name Player extends CharacterBody2D
 @onready var spawn_pivot: Node2D = $ProjectileSpawnPivot
 @onready var interact_component: RayCast2D = $InteractComponent
 @export var sword_swing_tracks: Array[AudioStreamOggVorbis] = []
+@onready var camera: Camera2D = $Camera2D
 
 ## Items equipped to action slots A and B. Assigned by the inventory screen;
 ## may be null when a slot is empty.
@@ -39,6 +40,7 @@ func _ready() -> void:
 	InputEventBus.action_a_triggered.connect(execute_action_a)
 	InputEventBus.action_b_triggered.connect(execute_action_b)
 	InputEventBus.action_c_triggered.connect(execute_action_c)
+	set_camera()
 
 
 func _physics_process(delta: float) -> void:
@@ -55,6 +57,12 @@ func _physics_process(delta: float) -> void:
 		swing_sword()
 	movement_component.tick(delta)
 	_handle_push(delta)
+
+
+func set_camera() -> void:
+	await get_tree().physics_frame
+	await get_tree().process_frame
+	camera.reset_smoothing()
 
 
 # Slides a pushable block one tile once the player has leaned into it for

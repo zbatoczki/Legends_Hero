@@ -5,6 +5,7 @@ class_name Doorway extends Node2D
 static var spawn_door_name: String = ""
 
 @export var locked: bool = false
+@export var destructable: bool = false
 
 ## Same-scene destination. Leave empty when using target_scene.
 @export var target_door: Doorway
