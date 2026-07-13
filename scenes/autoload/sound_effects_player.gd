@@ -5,6 +5,8 @@ extends Node
 @onready var item_sound: AudioStreamPlayer = $ItemSound
 @onready var mystery_sound: AudioStreamPlayer = $MysterySound
 @onready var boss_damage_sound: AudioStreamPlayer = $BossDamageSound
+@onready var boss_music: AudioStreamPlayer = $BossMusic
+@onready var dungeon_music: AudioStreamPlayer = $DungeonMusic
 
 func play_damaged_sound(is_boss: bool = false) -> void:
 	if is_boss:
@@ -24,3 +26,8 @@ func play_item_sound(audio: AudioStream = null) -> void:
 
 func play_mystery_sound() -> void:
 	mystery_sound.play()
+
+
+func play_boss_music() -> void:
+	dungeon_music.stop()
+	boss_music.play()

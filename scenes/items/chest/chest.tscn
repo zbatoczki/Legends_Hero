@@ -13,16 +13,22 @@ collision_mask = 0
 script = ExtResource("1_a2apx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100161972]
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_cii4s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905033178]
 texture = ExtResource("2_3ceks")
+offset = Vector2(8, 8)
 hframes = 2
 frame = 1
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="ItemEndPosition" type="Marker2D" parent="." unique_id=194070926]
-position = Vector2(0, -13)
+position = Vector2(8, -6)
+gizmo_extents = 2.0
+
+[node name="ItemSpawnPosition" type="Marker2D" parent="." unique_id=854277379]
+position = Vector2(8, 8)
 gizmo_extents = 2.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=723902961]

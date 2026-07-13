@@ -536,7 +536,7 @@ target_position = Vector2(0, -10)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+position_smoothing_speed = 8.0
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

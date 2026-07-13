@@ -1,5 +1,7 @@
 extends Enemy
 
+@export var boss_room: Room
+
 @onready var enemy_movement_component: EnemyMovementComponent = $EnemyMovementComponent
 @onready var player_detection: Area2D = $PlayerDetection
 @onready var swing_sound: AudioStreamPlayer = $SwingSound
@@ -14,6 +16,8 @@ extends Enemy
 
 
 func _ready() -> void:
+	if boss_room != null:
+		boss_room.player_entered_room.connect(_on_player_entered_boss_room)
 	if stun_component != null:
 		stun_component.stunned.connect(_on_stunned)
 		stun_component.stun_ended.connect(_on_stun_ended)
@@ -92,6 +96,12 @@ func _on_died() -> void:
 	death_scene_instance.global_position = global_position
 	get_parent().add_child(death_scene_instance)
 	death_scene_instance.boss_death_complete.connect(func(): queue_free())
+
+
+func _on_player_entered_boss_room() -> void:
+	await get_tree().create_timer(1).timeout
+	SoundEffectsPlayer.play_boss_music()
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _flash_until_freed() -> void:

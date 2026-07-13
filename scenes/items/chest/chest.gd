@@ -2,14 +2,18 @@ extends Interactable
 
 @export var item: ItemResource
 @export var _is_visible := true
+@export var room: Room
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var item_end_position: Vector2 = $ItemEndPosition.global_position
 @onready var sound: AudioStreamPlayer = $AudioStreamPlayer
+@onready var item_spawn_position: Marker2D = $ItemSpawnPosition
 
 var _is_open := false
 
 func _ready() -> void:
+	if room != null:
+		room.room_cleared.connect(on_triggered)
 	sprite_2d.frame = 0
 	if item == null:
 		push_warning("No item was assigned to the chest.")
@@ -34,7 +38,7 @@ func spawn_item() -> void:
 	var item_sprite = Sprite2D.new()
 	add_child(item_sprite)
 	item_sprite.texture = item.static_texture
-	item_sprite.global_position = global_position
+	item_sprite.position = item_spawn_position.position
 	
 	var tween = create_tween()
 	tween.tween_property(item_sprite, "global_position", item_end_position, 0.5)

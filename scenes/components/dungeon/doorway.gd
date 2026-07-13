@@ -35,7 +35,7 @@ func _ready() -> void:
 		_place_player.call_deferred()
 	
 	if doorway_direction == DOORWAY_DIRECTIONS.NORTH or doorway_direction == DOORWAY_DIRECTIONS.SOUTH:
-		trigger.rotate(deg_to_rad(-90 if doorway_direction == DOORWAY_DIRECTIONS.NORTH else 90))
+		trigger.rotate(deg_to_rad(90 if doorway_direction == DOORWAY_DIRECTIONS.NORTH else -90))
 	elif doorway_direction == DOORWAY_DIRECTIONS.EAST:
 		trigger.rotate(deg_to_rad(180))
 	else:
